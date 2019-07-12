@@ -6,15 +6,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
+import Vue from 'vue'
 
 @Component({
   components: {
     HelloWorld,
   },
 })
-export default class App extends Vue {
+export default class VueDialogX extends Vue {
+  $dialog: any
   async handleDialog () {
     try {
       let a = await this.$dialog.confirm({
@@ -22,7 +24,11 @@ export default class App extends Vue {
         message: '我觉545'
       })
     } catch (e) {
-      console.log('catch')
+      window.confirm('这是什么啊')
+      this.$dialog.alert({
+        title: 'catch',
+        message: '我觉545'
+      })
     }
   }
   created () {
@@ -30,3 +36,8 @@ export default class App extends Vue {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+#app
+  @include flex
+</style>

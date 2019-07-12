@@ -4,11 +4,13 @@
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
+    "allowJs": true,
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
@@ -16,15 +18,17 @@
     ],
     "paths": {
       "@/*": [
-        "src/*",
-        "demo/*"
-      ]
+        "src/*"
+      ],
+      "vue": ["node_modules/vue/types"]
     },
     "lib": [
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
+      "es2015",
+      "es2016"
     ]
   },
   "include": [
@@ -35,7 +39,8 @@
     "demo/**/*.tsx",
     "demo/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx", "shims-tsx.d.ts", "shims-vue.d.ts", "shims-vue.d.ts"
+    "tests/**/*.tsx",
+    "vue-dialog-x.d.ts"
   ],
   "exclude": [
     "node_modules"

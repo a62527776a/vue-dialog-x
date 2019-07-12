@@ -1,21 +1,24 @@
-import { VueConstructor } from 'vue'
+import Vue, { VueConstructor } from 'vue'
 import DialogXComponent from './dialog.vue'
 import { DIALOG_TYPES, DEFAULT_OPTIONS } from './config/constants'
 
 class VueDialogX {
   Vue: VueConstructor
   $root: any = []
-  constructor (Vue: VueConstructor) {
+  globalOptions: any = {}
+  constructor (globalOptions: any) {
     this.Vue = Vue
+    this.globalOptions = globalOptions
   }
 
   open (opt: any, dialogType?: DIALOG_TYPES) {
     this.mountIfNotMounted()
+    let _opt = Object.assign(DEFAULT_OPTIONS, this.globalOptions)
     return new Promise((resolve, reject) => {
       opt.resolve = resolve
       opt.reject = reject
       opt.dialogType = dialogType
-      const options = Object.assign(DEFAULT_OPTIONS, opt)
+      const options = Object.assign(_opt, opt)
       this.$root[this.$root.length - 1].commit(options)
     })
   }
@@ -30,7 +33,7 @@ class VueDialogX {
   
   mountIfNotMounted () {
     let vm = (() => {
-      const DialogConstructor = this.Vue.extend(DialogXComponent)
+      const DialogConstructor = DialogXComponent
       const node = document.createElement('div')
       const bodyDom = document.querySelector('body')
       bodyDom && bodyDom.appendChild(node)
@@ -53,8 +56,10 @@ class VueDialogX {
   }
 }
 
+const install = (Vue: VueConstructor, options?: any) => {
+  Vue.prototype.$dialog = new VueDialogX(options)
+}
+
 export default {
-  install: (Vue: VueConstructor) => {
-    Vue.prototype.$dialog = new VueDialogX(Vue)
-  }
+  install
 }
