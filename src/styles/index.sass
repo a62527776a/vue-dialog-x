@@ -5,3 +5,16 @@
   transition: opacity .2s;
 .fade-enter, .fade-leave-to
   opacity: 0
+
+.modal-popup-in-leave-active
+  transition: opacity .2s;
+.modal-popup-in-leave-to
+  opacity: 0
+
+.modal-popup-in-enter-active
+  transition: opacity .2s;
+  transition-property: transform,opacity;
+  transform: translate3d(-50%,-50%,0) scale(1) !important
+.modal-popup-in-enter
+  opacity: 0
+  transform: translate3d(-50%,-50%,0) scale(1.185) !important

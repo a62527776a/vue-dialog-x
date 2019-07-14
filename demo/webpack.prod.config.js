@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../docs/'),
-    filename: 'vue-fab.js'
+    filename: 'vue-dialog-x.js'
   },
   module: {
     loaders: [{

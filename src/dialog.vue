@@ -3,7 +3,7 @@
   transition(name="fade")
     .dialog-x-window(v-if="show")
   transition(
-    name="fade"
+    name="modal-popup-in"
     @after-leave="transitionend")
     .dialog-x-pannel(v-if="show")
       .dialog-x-inner
