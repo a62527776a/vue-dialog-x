@@ -1,36 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" @click="handleDialog" src="./assets/logo.png">
+    <h1 @click="handleDialog">Alert</h1>
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
   </div>
 </template>
 
-<script lang="ts">
-import { Component } from 'vue-property-decorator';
+<script>
 import HelloWorld from './components/HelloWorld.vue';
 import Vue from 'vue'
 
-@Component({
+export default {
   components: {
-    HelloWorld,
+    HelloWorld
   },
-})
-export default class VueDialogX extends Vue {
-  $dialog: any
-  async handleDialog () {
-    try {
-      let a = await this.$dialog.confirm({
-        title: '这个是一个问题12',
-        message: '我觉545'
-      })
-    } catch (e) {
-      window.confirm('这是什么啊')
-      this.$dialog.alert({
-        title: 'catch',
-        message: '我觉545'
-      })
+  methods: {
+    async handleDialog () {
+      try {
+        let a = await this.$dialog.confirm({
+          title: '这个是一个问题12',
+          message: '我觉545'
+        })
+      } catch (e) {
+        window.confirm('这是什么啊')
+        this.$dialog.alert({
+          title: 'catch',
+          message: '我觉545'
+        })
+      }
     }
-  }
+  },
   created () {
 
   }
@@ -38,6 +36,8 @@ export default class VueDialogX extends Vue {
 </script>
 
 <style lang="sass" scoped>
+@import "../src/styles/index.sass";
+
 #app
   @include flex
 </style>

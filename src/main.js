@@ -1,17 +1,11 @@
-import Vue, { VueConstructor } from 'vue'
 import DialogXComponent from './dialog.vue'
 import { DIALOG_TYPES, DEFAULT_OPTIONS } from './config/constants'
 
-class VueDialogX {
-  Vue: VueConstructor
-  $root: any = []
-  globalOptions: any = {}
-  constructor (globalOptions: any) {
-    this.Vue = Vue
-    this.globalOptions = globalOptions
-  }
-
-  open (opt: any, dialogType?: DIALOG_TYPES) {
+const VueDialogX = function (Vue, globalOptions = {}) {
+  this.Vue = Vue
+  this.$root = []
+  this.globalOptions = globalOptions
+  VueDialogX.prototype.open = (opt, dialogType) => {
     this.mountIfNotMounted()
     let _opt = Object.assign(DEFAULT_OPTIONS, this.globalOptions)
     return new Promise((resolve, reject) => {
@@ -23,17 +17,17 @@ class VueDialogX {
     })
   }
 
-  async confirm (opt: any) {
+  VueDialogX.prototype.confirm = (opt) => {
     return this.open(opt, DIALOG_TYPES.CONFIRM)
   }
 
-  async alert (opt: any) {
+  VueDialogX.prototype.alert = (opt) => {
     return this.open(opt, DIALOG_TYPES.ALERT)
   }
-  
-  mountIfNotMounted () {
+
+  VueDialogX.prototype.mountIfNotMounted = () => {
     let vm = (() => {
-      const DialogConstructor = DialogXComponent
+      const DialogConstructor = this.Vue.extend(DialogXComponent)
       const node = document.createElement('div')
       const bodyDom = document.querySelector('body')
       bodyDom && bodyDom.appendChild(node)
@@ -49,15 +43,15 @@ class VueDialogX {
     })
   }
 
-  remove (vm: any) {
+  VueDialogX.prototype.remove = (vm) => {
     vm.$off()
     vm.$destroy()
     vm.$el.remove()
   }
 }
 
-const install = (Vue: VueConstructor, options?: any) => {
-  Vue.prototype.$dialog = new VueDialogX(options)
+const install = (Vue, options = {}) => {
+  Vue.prototype.$dialog = new VueDialogX(Vue, options)
 }
 
 export default {

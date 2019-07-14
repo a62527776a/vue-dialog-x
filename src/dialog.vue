@@ -20,47 +20,50 @@
           v-if="showCancel()") {{cancelText}}
 </template>
 
-<script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+<script>
 import { DIALOG_TYPES, DEFAULT_OPTIONS } from './config/constants'
 
-@Component
-export default class DialogXComponent extends Vue {
-  resolve: Function = () => {}
-  reject: Function = () => {}
-  title: string = ''
-  message: string = ''
-  show: boolean = false
-  dialogType: DIALOG_TYPES = DIALOG_TYPES.ALERT
-  okText: string = DEFAULT_OPTIONS.okText
-  cancelText: string = DEFAULT_OPTIONS.cancelText
-
-  commit(options: any, type: DIALOG_TYPES) {
-    let _data = Object.assign(this.$data, options)
-    for (let key in _data) {
-      this.$data[key] = _data[key]
+export default {
+  name: 'DialogXComponent',
+  data () {
+    return {
+      resolve: () => {},
+      reject: () => {},
+      title: '',
+      message: '',
+      show: false,
+      dialogType: DIALOG_TYPES.ALERT,
+      okText: DEFAULT_OPTIONS.okText,
+      cancelText: DEFAULT_OPTIONS.cancelText
     }
-  }
+  },
+  methods: {
+    commit (options, type) {
+      let _data = Object.assign(this.$data, options)
+      for (let key in _data) {
+        this.$data[key] = _data[key]
+      }
+    },
+    showCancel () {
+      return this.dialogType === DIALOG_TYPES.CONFIRM
+    },
 
-  showCancel (): boolean {
-    return this.dialogType === DIALOG_TYPES.CONFIRM
-  }
+    confirm () {
+      this.resolve()
+      this.show = false
+    },
 
-  confirm () {
-    this.resolve()
-    this.show = false
-  }
+    cancel () {
+      this.reject()
+      this.show = false
+    },
 
-  cancel () {
-    this.reject()
-    this.show = false
-  }
-
-  transitionend () {
-    if (!this.show) {
-      this.$emit('confirm')
+    transitionend () {
+      if (!this.show) {
+        this.$emit('confirm')
+      }
     }
-  }
+  },
 
   mounted () {
     this.show = true
@@ -69,6 +72,8 @@ export default class DialogXComponent extends Vue {
 </script>
 
 <style lang="sass" scoped>
+@import "./styles/index.sass";
+
 .dialog-x-window
   position: fixed;
   z-index: 998;
