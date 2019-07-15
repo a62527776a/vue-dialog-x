@@ -3,6 +3,10 @@
 
 **[live demo](https://a62527776a.github.io/vue-dialog-x/)**
 
+![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
+![8.gif](https://img.rr.tv/fe/2019715/confirm.gif)
+![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
+
 ## Installation and use
 
 ```
