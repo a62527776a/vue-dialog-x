@@ -6,6 +6,8 @@
 ![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/confirm.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
+![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
+![8.gif](https://img.rr.tv/fe/2019715/actions.gif)
 
 ## Installation and use
 
