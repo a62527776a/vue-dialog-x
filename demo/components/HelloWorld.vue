@@ -10,6 +10,13 @@
       <li><a @click="handleDialog('confirm')" rel="noopener">Confirm</a></li>
       <li><a @click="handleDialog('prompt')" rel="noopener">Prompt</a></li>
     </ul>
+    <h3>特性</h3>
+    <ul>
+      <li>
+        <a @click="handleHTMLDialog()" rel="noopener">渲染HTML模板</a>
+        <textarea v-model="htmlString"></textarea>
+      </li>
+    </ul>
     <h3>Essential Links</h3>
     <ul>
       <li><a href="https://github.com/a62527776a/vue-dialog-x" target="_blank" rel="noopener">Github</a></li>
@@ -28,6 +35,11 @@
 <script lang="js">
 export default {
   props: ['msg'],
+  data () {
+    return {
+      htmlString: `<a style="color: red">这是一个实例的html渲染 注意，html字段将会替换message字段</a>`
+    }
+  },
   methods: {
     async handleDialog (type) {
       let a = await this.$dialog[type]({
@@ -40,6 +52,11 @@ export default {
           message: `您输入了：${a}`
         })
       }
+    },
+    handleHTMLDialog () {
+      this.$dialog.alert({
+        html: this.htmlString
+      })
     }
   }
 }

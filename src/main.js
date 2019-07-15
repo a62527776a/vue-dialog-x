@@ -7,7 +7,8 @@ const VueDialogX = function (Vue, globalOptions = {}) {
   this.globalOptions = globalOptions
   VueDialogX.prototype.open = (opt, dialogType) => {
     this.mountIfNotMounted()
-    let _opt = Object.assign(DEFAULT_OPTIONS, this.globalOptions)
+    let _DEFAULT_OPTIONS = JSON.parse(JSON.stringify(DEFAULT_OPTIONS))
+    let _opt = Object.assign(_DEFAULT_OPTIONS, this.globalOptions)
     return new Promise((resolve, reject) => {
       opt.resolve = resolve
       opt.reject = reject
@@ -22,6 +23,7 @@ const VueDialogX = function (Vue, globalOptions = {}) {
   }
 
   VueDialogX.prototype.alert = (opt) => {
+    console.log(DEFAULT_OPTIONS)
     return this.open(opt, DIALOG_TYPES.ALERT)
   }
 

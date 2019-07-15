@@ -21,7 +21,15 @@ import App from './App.vue'
 import VueDialogX from 'vue-dialog-x'
 import Vue from 'vue'
 
-Vue.use(VueDialogX)
+const globalOpt = {
+  title: '提示',
+  okText: '确认',
+  cancelText: '取消'
+}
+
+Vue.use(VueDialogX,
+  globalOpt // 可选
+)
 
 new Vue({
   render: h => h(App)
@@ -48,7 +56,15 @@ export default {
 # API
 
 ```
-this.$dialog.alert()
-this.$dialog.confirm()
-this.$dialog.prompt()
+const opt = {
+  title: '提示',
+  message: '',
+  okText: '确认',
+  cancelText: '取消',
+  html: ''
+}
+
+this.$dialog.alert(opt)
+this.$dialog.confirm(opt)
+this.$dialog.prompt(opt)
 ```

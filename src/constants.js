@@ -9,5 +9,6 @@ export const DEFAULT_OPTIONS = {
   message: '',
   dialogType: DIALOG_TYPES.ALERT,
   okText: '确认',
-  cancelText: '取消'
+  cancelText: '取消',
+  html: ''
 }

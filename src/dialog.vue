@@ -8,7 +8,9 @@
     .dialog-x-pannel(v-if="show")
       .dialog-x-inner
         .dialog-x-title {{title}}
-        .dialog-x-message {{message}}
+        .dialog-x-message(v-if="!html") {{message}}
+        .dialog-x-message(v-else
+          v-html="html")
         input.dialog-x-field(
           v-if="showField"
           v-model="fieldMessage")
@@ -39,7 +41,8 @@ export default {
       show: false,
       dialogType: DIALOG_TYPES.ALERT,
       okText: DEFAULT_OPTIONS.okText,
-      cancelText: DEFAULT_OPTIONS.cancelText
+      cancelText: DEFAULT_OPTIONS.cancelText,
+      html: ''
     }
   },
   computed: {
