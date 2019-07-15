@@ -50,7 +50,8 @@ module.exports = {
     }]
   },
   devServer: {
-    inline: true
+    inline: true,
+    host: '0.0.0.0'
   },
   devtool: 'eval-source-map',
   plugins: [

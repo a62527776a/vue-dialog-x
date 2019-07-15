@@ -6,7 +6,6 @@ module.exports = {
   entry: {
     main: path.resolve(__dirname + '/src/main.js')
   },
-  watch: true,
   output: {
     path: path.resolve(__dirname + '/dist'),
     filename: 'vue-dialog-x.js',

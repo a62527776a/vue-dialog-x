@@ -1,29 +1,50 @@
-# vue-dialog-x
+# Vue-Dialog-X
+##### 支持Promise的iOS样式风格的弹窗提示
 
-## Project setup
-```
-yarn install
-```
+**[live demo](https://a62527776a.github.io/vue-dialog-x/)**
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+## Installation and use
 
-### Compiles and minifies for production
 ```
-yarn run build
+$ yarn add vue-dialog-x
+or
+$ npm install vue-dialog-x
 ```
 
-### Run your tests
 ```
-yarn run test
+// main.js
+import App from './App.vue'
+import VueDialogX from 'vue-dialog-x'
+import Vue from 'vue'
+
+Vue.use(VueDialogX)
+
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
 ```
 
-### Lints and fixes files
 ```
-yarn run lint
+// App.vue
+<script>
+export default {
+  name: 'xxx',
+  methods: {
+    handleDialog: async function () {
+      await this.$dialog.alert()
+      await this.$dialog.confirm()
+      let result = await this.$dialog.prompt()
+      console.log(result) // 将返回用户在prompt弹窗中填写的内容
+    }
+  }
+}
+</script>
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# API
+
+```
+this.$dialog.alert()
+this.$dialog.confirm()
+this.$dialog.prompt()
+```

@@ -1,6 +1,7 @@
 export const DIALOG_TYPES = {
   ALERT: 'ALERT',
-  CONFIRM: 'CONFIRM'
+  CONFIRM: 'CONFIRM',
+  PROMPT: 'PROMPT'
 }
 
 export const DEFAULT_OPTIONS = {

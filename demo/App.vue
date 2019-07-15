@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <h1 @click="handleDialog">Alert</h1>
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <!-- <h1 @click="handleDialog">Alert</h1> -->
+    <HelloWorld msg="欢迎使用 Vue-Dialog-X"/>
   </div>
 </template>
 
@@ -30,7 +30,6 @@ export default {
     }
   },
   created () {
-
   }
 }
 </script>

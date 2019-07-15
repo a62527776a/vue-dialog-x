@@ -1,11 +1,12 @@
 {
   "name": "vue-dialog-x",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "/dist/vue-dialog-x.js",
   "scripts": {
     "build": "webpack --config ./webpack.config.js",
     "demo-build": "webpack --config ./demo/webpack.prod.config.js",
-    "dev": "webpack-dev-server --inline --progress --config demo/webpack.dev.config.js"
+    "dev": "webpack-dev-server --inline --progress --config demo/webpack.dev.config.js",
+    "release": "npm run build && npm run demo-build && npm publish"
   },
   "dependencies": {},
   "devDependencies": {

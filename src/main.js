@@ -1,5 +1,5 @@
 import DialogXComponent from './dialog.vue'
-import { DIALOG_TYPES, DEFAULT_OPTIONS } from './config/constants'
+import { DIALOG_TYPES, DEFAULT_OPTIONS } from './constants'
 
 const VueDialogX = function (Vue, globalOptions = {}) {
   this.Vue = Vue
@@ -23,6 +23,10 @@ const VueDialogX = function (Vue, globalOptions = {}) {
 
   VueDialogX.prototype.alert = (opt) => {
     return this.open(opt, DIALOG_TYPES.ALERT)
+  }
+
+  VueDialogX.prototype.prompt = (opt) => {
+    return this.open(opt, DIALOG_TYPES.PROMPT)
   }
 
   VueDialogX.prototype.mountIfNotMounted = () => {

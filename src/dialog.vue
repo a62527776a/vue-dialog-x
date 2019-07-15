@@ -1,5 +1,5 @@
 <template lang="pug">
-.dialog-x
+.dialog-x(@touchmove="disableTouchmove")
   transition(name="fade")
     .dialog-x-window(v-if="show")
   transition(
@@ -9,6 +9,9 @@
       .dialog-x-inner
         .dialog-x-title {{title}}
         .dialog-x-message {{message}}
+        input.dialog-x-field(
+          v-if="showField"
+          v-model="fieldMessage")
       .dialog-x-action-bar
         .dialog-x-btn(
           @click="confirm"
@@ -17,11 +20,12 @@
         .dialog-x-btn(
           @click="cancel"
           @touchstart=""
-          v-if="showCancel()") {{cancelText}}
+          v-if="showCancel") {{cancelText}}
 </template>
 
 <script>
-import { DIALOG_TYPES, DEFAULT_OPTIONS } from './config/constants'
+import { DIALOG_TYPES, DEFAULT_OPTIONS } from './constants'
+import { disableTouchmove } from './utils'
 
 export default {
   name: 'DialogXComponent',
@@ -31,10 +35,20 @@ export default {
       reject: () => {},
       title: '',
       message: '',
+      fieldMessage: '',
       show: false,
       dialogType: DIALOG_TYPES.ALERT,
       okText: DEFAULT_OPTIONS.okText,
       cancelText: DEFAULT_OPTIONS.cancelText
+    }
+  },
+  computed: {
+    showCancel () {
+      return this.dialogType !== DIALOG_TYPES.ALERT
+    },
+
+    showField () {
+      return this.dialogType === DIALOG_TYPES.PROMPT
     }
   },
   methods: {
@@ -44,14 +58,13 @@ export default {
         this.$data[key] = _data[key]
       }
     },
-    showCancel () {
-      return this.dialogType === DIALOG_TYPES.CONFIRM
-    },
 
     confirm () {
-      this.resolve()
+      this.resolve(this.showField ? this.fieldMessage : true)
       this.show = false
     },
+
+    disableTouchmove: disableTouchmove,
 
     cancel () {
       this.reject()
@@ -105,6 +118,16 @@ export default {
     padding: 15px
     background: $pannelColor
     border-radius: 13px 13px 0 0
+  .dialog-x-field
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 15px
+    padding: 0 5px;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 14px;
+    height: 32px;
+    border: 1px solid #ccc
 .dialog-x-action-bar
   display: flex
   height: 44px
