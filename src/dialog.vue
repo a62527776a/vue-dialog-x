@@ -14,7 +14,7 @@
         input.dialog-x-field(
           v-if="showField"
           v-model="fieldMessage")
-      .dialog-x-action-bar
+      .dialog-x-action-bar.dialog-x-btn-radius(v-if="!showActions")
         .dialog-x-btn(
           @click="confirm"
           @touchstart="") {{okText}}
@@ -23,6 +23,14 @@
           @click="cancel"
           @touchstart=""
           v-if="showCancel") {{cancelText}}
+      .dialog-x-action-bar(
+        v-for="(act, idx) in actions"
+        :class="{ 'dialog-x-btn-radius' : idx === (actions.length - 1) }")
+        .dialog-x-btn(
+          @click="confirm(idx)"
+          @touchstart=""
+          :key="idx"
+          v-if="showCancel") {{act.okText}}
 </template>
 
 <script>
@@ -42,7 +50,8 @@ export default {
       dialogType: DIALOG_TYPES.ALERT,
       okText: DEFAULT_OPTIONS.okText,
       cancelText: DEFAULT_OPTIONS.cancelText,
-      html: ''
+      html: '',
+      actions: null
     }
   },
   computed: {
@@ -52,6 +61,10 @@ export default {
 
     showField () {
       return this.dialogType === DIALOG_TYPES.PROMPT
+    },
+
+    showActions () {
+      return this.dialogType === DIALOG_TYPES.ACTIONS
     }
   },
   methods: {
@@ -62,8 +75,14 @@ export default {
       }
     },
 
-    confirm () {
-      this.resolve(this.showField ? this.fieldMessage : true)
+    confirm (idx) {
+      let result = true
+      if (this.showField) {
+        result = this.fieldMessage
+      } else if (this.showActions) {
+        result = idx
+      }
+      this.resolve(result)
       this.show = false
     },
 
@@ -87,8 +106,16 @@ export default {
 }
 </script>
 
+<style lang="sass">
+.dialog-x-message
+  img
+    width: 100%
+</style>
 <style lang="sass" scoped>
 @import "./styles/index.sass";
+
+.dialog-x-btn-radius
+  border-radius: 0 0 13px 13px
 
 .dialog-x-window
   position: fixed;
@@ -134,7 +161,6 @@ export default {
 .dialog-x-action-bar
   display: flex
   height: 44px
-  border-radius: 0 0 13px 13px
   overflow: hidden
   @include flex
   position: relative

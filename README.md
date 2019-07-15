@@ -41,12 +41,35 @@ new Vue({
 <script>
 export default {
   name: 'xxx',
+  data () {
+    return {
+      actions: [
+        {
+          okText: '操作1'
+        },
+        {
+          okText: '操作2'
+        },
+        {
+          okText: '操作3'
+        },
+        {
+          okText: '操作4'
+        }
+      ]
+    }
+  },
   methods: {
     handleDialog: async function () {
       await this.$dialog.alert()
       await this.$dialog.confirm()
       let result = await this.$dialog.prompt()
       console.log(result) // 将返回用户在prompt弹窗中填写的内容
+      let result = await this.$dialog.actions({
+        actions: this.actions,
+        message: '这个是多个选项的弹窗提示'
+      })
+      console.log(result) // 将返回下标
     }
   }
 }
@@ -67,4 +90,29 @@ const opt = {
 this.$dialog.alert(opt)
 this.$dialog.confirm(opt)
 this.$dialog.prompt(opt)
+
+----------------------------------------------------------------------------
+
+const actionsOpt = {
+  message: '这个是多个选项的弹窗提示',
+  actions: [
+    {
+      okText: '操作1'
+    },
+    {
+      okText: '操作2'
+    },
+    {
+      okText: '操作3'
+    },
+    {
+      okText: '操作4'
+    }
+  ]
+}
+
+let result = await this.$dialog.actions(actionsOpt)
+this.$dialog.alert({
+  message: '点击了第' + (result + 1) + '个按钮'
+})
 ```

@@ -1,6 +1,6 @@
 {
   "name": "vue-dialog-x",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "/dist/vue-dialog-x.js",
   "scripts": {
     "build": "webpack --config ./webpack.config.js",

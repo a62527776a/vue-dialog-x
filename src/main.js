@@ -23,12 +23,15 @@ const VueDialogX = function (Vue, globalOptions = {}) {
   }
 
   VueDialogX.prototype.alert = (opt) => {
-    console.log(DEFAULT_OPTIONS)
     return this.open(opt, DIALOG_TYPES.ALERT)
   }
 
   VueDialogX.prototype.prompt = (opt) => {
     return this.open(opt, DIALOG_TYPES.PROMPT)
+  }
+
+  VueDialogX.prototype.actions = (opt) => {
+    return this.open(opt, DIALOG_TYPES.ACTIONS)
   }
 
   VueDialogX.prototype.mountIfNotMounted = () => {
