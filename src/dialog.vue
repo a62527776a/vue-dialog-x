@@ -1,5 +1,5 @@
 <template lang="pug">
-.dialog-x
+.dialog-x(@touchmove.prevent="disableTouchmove")
   transition(name="fade")
     .dialog-x-window(v-if="show")
   transition(
@@ -111,9 +111,6 @@ export default {
 
   mounted () {
     this.show = true
-    // document.addEventListener('touchmove', this.disableTouchmove, {
-    //   passive: false
-    // })
   }
 }
 </script>
