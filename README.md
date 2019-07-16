@@ -7,6 +7,7 @@
 ![8.gif](https://img.rr.tv/fe/2019715/confirm.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/actions.gif)
+![弹窗图示](https://img.rr.tv/fe/2019716/弹窗图示.gif)
 
 ## Installation and use
 
@@ -91,6 +92,12 @@ const opt = {
 this.$dialog.alert(opt)
 this.$dialog.confirm(opt)
 this.$dialog.prompt(opt)
+
+---------------------------------------------------------------------
+
+this.$dialog.dialog({
+  html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
+}) // 仅支持图片
 
 ----------------------------------------------------------------------------
 
