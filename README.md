@@ -7,7 +7,7 @@
 ![8.gif](https://img.rr.tv/fe/2019715/confirm.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/actions.gif)
-![弹窗图示](https://img.rr.tv/fe/2019716/弹窗图示.gif)
+![弹窗图示](https://upload-images.jianshu.io/upload_images/5738345-0b61e6d1d6a27605.gif?imageMogr2/auto-orient/strip)
 
 ## Installation and use
 
