@@ -34,6 +34,10 @@ const VueDialogX = function (Vue, globalOptions = {}) {
     return this.open(opt, DIALOG_TYPES.ACTIONS)
   }
 
+  VueDialogX.prototype.dialog = (opt) => {
+    return this.open(opt, DIALOG_TYPES.DIALOG)
+  }
+
   VueDialogX.prototype.mountIfNotMounted = () => {
     let vm = (() => {
       const DialogConstructor = this.Vue.extend(DialogXComponent)

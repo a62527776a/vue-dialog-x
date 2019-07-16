@@ -2,7 +2,8 @@ export const DIALOG_TYPES = {
   ALERT: 'ALERT',
   CONFIRM: 'CONFIRM',
   PROMPT: 'PROMPT',
-  ACTIONS: 'ACTIONS'
+  ACTIONS: 'ACTIONS',
+  DIALOG: 'DIALOG'
 }
 
 export const DEFAULT_OPTIONS = {

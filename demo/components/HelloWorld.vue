@@ -10,6 +10,7 @@
       <li><a @click="handleDialog('confirm')" rel="noopener">Confirm</a></li>
       <li><a @click="handleDialog('prompt')" rel="noopener">Prompt</a></li>
       <li><a @click="handleActionsDialog" rel="noopener">Actions</a></li>
+      <li><a @click="handleDialogDialog" rel="noopener">Dialog</a></li>
     </ul>
     <h3>特性</h3>
     <ul>
@@ -70,6 +71,11 @@ export default {
     handleImgHTMLDialog () {
       this.$dialog.alert({
         title: '',
+        html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
+      })
+    },
+    handleDialogDialog () {
+      this.$dialog.dialog({
         html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
       })
     },

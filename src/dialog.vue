@@ -1,41 +1,44 @@
 <template lang="pug">
-.dialog-x(@touchmove="disableTouchmove")
+.dialog-x
   transition(name="fade")
     .dialog-x-window(v-if="show")
   transition(
     name="modal-popup-in"
     @after-leave="transitionend")
     .dialog-x-pannel(v-if="show")
-      .dialog-x-inner
-        .dialog-x-title {{title}}
+      .dialog-x-inner(:class="{ 'dialog-x-radius' : showDialog }")
+        .dialog-x-title(v-if="!showDialog") {{title}}
         .dialog-x-message(v-if="!html") {{message}}
         .dialog-x-message(v-else
           v-html="html")
         input.dialog-x-field(
           v-if="showField"
           v-model="fieldMessage")
-      .dialog-x-action-bar.dialog-x-btn-radius(v-if="!showActions")
-        .dialog-x-btn(
-          @click="confirm"
-          @touchstart="") {{okText}}
-        .dialog-x-cell
-        .dialog-x-btn(
-          @click="cancel"
-          @touchstart=""
-          v-if="showCancel") {{cancelText}}
-      .dialog-x-action-bar(
-        v-for="(act, idx) in actions"
-        :class="{ 'dialog-x-btn-radius' : idx === (actions.length - 1) }")
-        .dialog-x-btn(
-          @click="confirm(idx)"
-          @touchstart=""
-          :key="idx"
-          v-if="showCancel") {{act.okText}}
+      template(v-if="!showDialog")
+        .dialog-x-action-bar.dialog-x-btn-radius(v-if="!showActions")
+          .dialog-x-btn(
+            @click="confirm"
+            @touchstart="") {{okText}}
+          .dialog-x-cell
+          .dialog-x-btn(
+            @click="cancel"
+            @touchstart=""
+            v-if="showCancel") {{cancelText}}
+        .dialog-x-action-bar(
+          v-for="(act, idx) in actions"
+          :class="{ 'dialog-x-btn-radius' : idx === (actions.length - 1) }")
+          .dialog-x-btn(
+            @click="confirm(idx)"
+            @touchstart=""
+            :key="idx"
+            v-if="showCancel") {{act.okText}}
+      template(v-else)
+        .dialog-float-close(v-if="showDialog" @click="confirm")
+          <svg t="1563279284795" class="icon close-svg" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2026" width="200" height="200"><path d="M924.792 895.746l-383.83-384.758 381.808-382.733c7.997-8.017 7.997-21.016 0-29.032-7.999-8.018-20.962-8.018-28.962 0l-381.809 382.732-381.808-382.732c-7.997-8.018-20.964-8.018-28.962 0-7.996 8.018-7.996 21.016 0 29.032l381.809 382.733-383.831 384.758c-7.996 8.017-7.996 21.016 0 29.032 3.998 4.007 9.24 6.012 14.482 6.012 5.241 0 10.483-2.005 14.482-6.012l383.83-384.758 383.83 384.758c3.999 4.007 9.239 6.012 14.482 6.012s10.481-2.005 14.482-6.012c7.996-8.017 7.996-21.016-0.001-29.032z" p-id="2027" fill="#ffffff"></path></svg>
 </template>
 
 <script>
 import { DIALOG_TYPES, DEFAULT_OPTIONS } from './constants'
-import { disableTouchmove } from './utils'
 
 export default {
   name: 'DialogXComponent',
@@ -65,6 +68,10 @@ export default {
 
     showActions () {
       return this.dialogType === DIALOG_TYPES.ACTIONS
+    },
+
+    showDialog () {
+      return this.dialogType === DIALOG_TYPES.DIALOG
     }
   },
   methods: {
@@ -86,7 +93,9 @@ export default {
       this.show = false
     },
 
-    disableTouchmove: disableTouchmove,
+    disableTouchmove (e) {
+      e.preventDefault()
+    },
 
     cancel () {
       this.reject()
@@ -102,6 +111,9 @@ export default {
 
   mounted () {
     this.show = true
+    // document.addEventListener('touchmove', this.disableTouchmove, {
+    //   passive: false
+    // })
   }
 }
 </script>
@@ -116,7 +128,8 @@ export default {
 
 .dialog-x-btn-radius
   border-radius: 0 0 13px 13px
-
+.dialog-x-radius
+  border-radius: 13px !important
 .dialog-x-window
   position: fixed;
   z-index: 998;
@@ -191,4 +204,19 @@ export default {
   transform: scaleX(0.5);
 .dialog-x-btn:active
   background: #EEE
+.dialog-float-close
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid white;
+  position: fixed;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) scale(1)
+  top: calc(100% + 30px)
+  z-index: 1001
+  @include flex
+  .close-svg
+    width: 20px;
+    height: 20px;
 </style>
