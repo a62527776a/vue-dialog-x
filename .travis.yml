@@ -1,0 +1,15 @@
+language: node_js
+
+branches:
+  only:
+  - master
+
+node_js:
+  - v11.0.0
+
+before_deploy:
+  - npm install
+
+script: npm run test
+
+
