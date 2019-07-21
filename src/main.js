@@ -3,10 +3,10 @@ import { DIALOG_TYPES, DEFAULT_OPTIONS } from './constants'
 
 const VueDialogX = function (Vue, globalOptions = {}) {
   this.Vue = Vue
-  this.$root = []
+  this.$root = {}
   this.globalOptions = globalOptions
-  VueDialogX.prototype.open = (opt, dialogType) => {
-    this.mountIfNotMounted()
+  VueDialogX.prototype.open = (opt = {}, dialogType) => {
+    let id = this.mountIfNotMounted(opt.id)
     let _DEFAULT_OPTIONS = JSON.parse(JSON.stringify(DEFAULT_OPTIONS))
     let _opt = Object.assign(_DEFAULT_OPTIONS, this.globalOptions)
     return new Promise((resolve, reject) => {
@@ -14,7 +14,7 @@ const VueDialogX = function (Vue, globalOptions = {}) {
       opt.reject = reject
       opt.dialogType = dialogType
       const options = Object.assign(_opt, opt)
-      this.$root[this.$root.length - 1].commit(options)
+      this.$root[id].commit(options)
     })
   }
 
@@ -38,7 +38,7 @@ const VueDialogX = function (Vue, globalOptions = {}) {
     return this.open(opt, DIALOG_TYPES.DIALOG)
   }
 
-  VueDialogX.prototype.mountIfNotMounted = () => {
+  VueDialogX.prototype.mountIfNotMounted = (_id) => {
     let vm = (() => {
       const DialogConstructor = this.Vue.extend(DialogXComponent)
       const node = document.createElement('div')
@@ -47,19 +47,27 @@ const VueDialogX = function (Vue, globalOptions = {}) {
       const _vm = new DialogConstructor()
       return _vm.$mount(node)
     })()
-    this.$root.push(vm)
+    let id = null
+    if (_id) {
+      id = _id
+    } else {
+      id = new Date().getTime()
+    }
+    this.$root[id] = vm
     vm.$on('confirm', () => {
-      this.remove(vm)
+      this.remove(id)
     })
     vm.$on('cancel', () => {
-      this.remove(vm)
+      this.remove(id)
     })
+    return id
   }
 
-  VueDialogX.prototype.remove = (vm) => {
-    vm.$off()
-    vm.$destroy()
-    vm.$el.remove()
+  VueDialogX.prototype.remove = (id) => {
+    this.$root[id].$off()
+    this.$root[id].$destroy()
+    this.$root[id].$el.remove()
+    delete this.$root[id]
   }
 }
 

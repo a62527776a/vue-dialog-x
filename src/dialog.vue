@@ -27,7 +27,7 @@
         .dialog-x-action-bar(
           v-for="(act, idx) in actions"
           :class="{ 'dialog-x-btn-radius' : idx === (actions.length - 1) }")
-          .dialog-x-btn(
+          .dialog-x-btn.dialog-x-action-item(
             @click="confirm(idx)"
             @touchstart=""
             :key="idx"
@@ -57,6 +57,7 @@ export default {
       actions: null
     }
   },
+
   computed: {
     showCancel () {
       return this.dialogType !== DIALOG_TYPES.ALERT
@@ -74,11 +75,12 @@ export default {
       return this.dialogType === DIALOG_TYPES.DIALOG
     }
   },
+
   methods: {
     commit (options, type) {
       let _data = Object.assign(this.$data, options)
       for (let key in _data) {
-        this.$data[key] = _data[key]
+        this[key] = _data[key]
       }
     },
 
@@ -89,8 +91,8 @@ export default {
       } else if (this.showActions) {
         result = idx
       }
-      this.resolve(result)
       this.show = false
+      this.resolve(result)
     },
 
     disableTouchmove (e) {
@@ -98,8 +100,8 @@ export default {
     },
 
     cancel () {
-      this.reject()
       this.show = false
+      this.reject()
     },
 
     transitionend () {

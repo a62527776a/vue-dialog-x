@@ -102,7 +102,10 @@ export default {
         message: '点击了第' + (result + 1) + '个按钮'
       })
     }
-  }
+  },
+  created () {
+    // this.$dialog.prompt()
+  },
 }
 </script>
 
