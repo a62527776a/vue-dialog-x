@@ -1,4 +1,14 @@
 # Vue-Dialog-X
+
+<p align="center">
+  <a href="https://travis-ci.org/a62527776a/vue-dialog-x">
+    <img src="https://travis-ci.org/a62527776a/vue-dialog-x.svg?branch=master">
+  </a>
+  <a href='https://coveralls.io/github/a62527776a/vue-dialog-x?branch=master'><img src='https://coveralls.io/repos/github/a62527776a/vue-dialog-x/badge.svg?branch=master' alt='Coverage Status' /></a>
+  <br>
+  </a>
+</p>
+
 ##### 支持Promise的iOS样式风格的弹窗提示
 
 **[live demo](https://a62527776a.github.io/vue-dialog-x/)**
