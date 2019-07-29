@@ -2,6 +2,9 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  resolve: {
+    extensions: ['.ts', '.js', '.vue']
+  },
   entry: {
     main: path.resolve(__dirname + '/main.js')
   },
@@ -10,7 +13,7 @@ module.exports = {
     filename: 'vue-fab.js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.vue$/,
       loader: "vue-loader"
     }, {
@@ -36,6 +39,10 @@ module.exports = {
           }
         }
       ]
+    }, {
+      test: /\.ts$/,
+      loader: 'ts-loader',
+      options: { appendTsSuffixTo: [/\.vue$/] }
     }, {
       test: /\.vue$/,
       enforce: 'pre',  // 在babel-loader对源码进行编译前进行lint的检查

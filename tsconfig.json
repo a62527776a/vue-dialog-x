@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "types": ["node"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@": ["src"]
+    },
+    "experimentalDecorators": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "strictPropertyInitialization": false,
+    "allowJs": true,
+    "noUnusedParameters": true,
+    "jsx": "preserve",
+    "jsxFactory": "h"
+  },
+  "include": [
+    "./src/*.ts", "vuedialogx.d.ts", "test/unit/specs/index.spec.js"
+  ],
+  "compileOnSave": true
+}
