@@ -37,79 +37,72 @@
           <svg t="1563279284795" class="icon close-svg" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2026" width="200" height="200"><path d="M924.792 895.746l-383.83-384.758 381.808-382.733c7.997-8.017 7.997-21.016 0-29.032-7.999-8.018-20.962-8.018-28.962 0l-381.809 382.732-381.808-382.732c-7.997-8.018-20.964-8.018-28.962 0-7.996 8.018-7.996 21.016 0 29.032l381.809 382.733-383.831 384.758c-7.996 8.017-7.996 21.016 0 29.032 3.998 4.007 9.24 6.012 14.482 6.012 5.241 0 10.483-2.005 14.482-6.012l383.83-384.758 383.83 384.758c3.999 4.007 9.239 6.012 14.482 6.012s10.481-2.005 14.482-6.012c7.996-8.017 7.996-21.016-0.001-29.032z" p-id="2027" fill="#ffffff"></path></svg>
 </template>
 
-<script>
-import { DIALOG_TYPES, DEFAULT_OPTIONS } from './constants'
+<script lang="ts">
+import { DIALOG_TYPES, DEFAULT_OPTIONS, Action, GlobalOptions } from './constants'
+import { Component, Vue } from 'vue-property-decorator'
 
-export default {
-  name: 'DialogXComponent',
-  data () {
-    return {
-      resolve: () => {},
-      reject: () => {},
-      title: '',
-      message: '',
-      fieldMessage: '',
-      show: false,
-      dialogType: DIALOG_TYPES.ALERT,
-      okText: DEFAULT_OPTIONS.okText,
-      cancelText: DEFAULT_OPTIONS.cancelText,
-      html: '',
-      actions: null
+@Component
+export default class VueDialogXComponent extends Vue {
+  resolve: Function = () => {}
+  reject: Function = () => {}
+  title: string = ''
+  message: string = ''
+  fieldMessage: string = ''
+  show:boolean = false
+  dialogType:DIALOG_TYPES = DIALOG_TYPES.ALERT
+  okText:string = DEFAULT_OPTIONS.okText
+  cancelText:string = DEFAULT_OPTIONS.cancelText
+  html: string = ''
+  actions: Array<Action> | null
+
+  get showCancel (): boolean {
+    return this.dialogType !== DIALOG_TYPES.ALERT
+  }
+
+  get showField (): boolean {
+    return this.dialogType === DIALOG_TYPES.PROMPT
+  }
+
+  get showActions (): boolean {
+    return this.dialogType === DIALOG_TYPES.ACTIONS
+  }
+
+  get showDialog (): boolean {
+    return this.dialogType === DIALOG_TYPES.DIALOG
+  }
+
+  commit (options: GlobalOptions, type: DIALOG_TYPES): void {
+    let _data = Object.assign(this.$data, options)
+    for (let key in _data) {
+      this[key] = _data[key]
     }
-  },
+  }
 
-  computed: {
-    showCancel () {
-      return this.dialogType !== DIALOG_TYPES.ALERT
-    },
-
-    showField () {
-      return this.dialogType === DIALOG_TYPES.PROMPT
-    },
-
-    showActions () {
-      return this.dialogType === DIALOG_TYPES.ACTIONS
-    },
-
-    showDialog () {
-      return this.dialogType === DIALOG_TYPES.DIALOG
+  confirm (idx: number) {
+    let result: boolean = true
+    if (this.showField) {
+      result = this.fieldMessage
+    } else if (this.showActions) {
+      result = idx
     }
-  },
+    this.show = false
+    this.resolve(result)
+  }
 
-  methods: {
-    commit (options, type) {
-      let _data = Object.assign(this.$data, options)
-      for (let key in _data) {
-        this[key] = _data[key]
-      }
-    },
+  disableTouchmove (e): void {
+    e.preventDefault()
+  }
 
-    confirm (idx) {
-      let result = true
-      if (this.showField) {
-        result = this.fieldMessage
-      } else if (this.showActions) {
-        result = idx
-      }
-      this.show = false
-      this.resolve(result)
-    },
+  cancel () {
+    this.show = false
+    this.reject()
+  }
 
-    disableTouchmove (e) {
-      e.preventDefault()
-    },
-
-    cancel () {
-      this.show = false
-      this.reject()
-    },
-
-    transitionend () {
-      if (!this.show) {
-        this.$emit('confirm')
-      }
+  transitionend () {
+    if (!this.show) {
+      this.$emit('confirm')
     }
-  },
+  }
 
   mounted () {
     this.show = true

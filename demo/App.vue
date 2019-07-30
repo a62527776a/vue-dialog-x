@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <!-- <h1 @click="handleDialog">Alert</h1> -->
     <HelloWorld msg="欢迎使用 Vue-Dialog-X"/>
   </div>
@@ -34,9 +34,9 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-@import "../src/styles/index.sass";
-
+<style scoped lang="sass">
 #app
-  @include flex
+  display: flex;
+  justify-content: center;
+  align-items: center
 </style>
