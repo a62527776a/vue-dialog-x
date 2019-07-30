@@ -15,7 +15,7 @@ interface OpenOpt extends GlobalOptions {
 export class VueDialogX {
   Vue: Component
   $root: VueDialogXComponentObject
-  globalOptions: GlobalOptions = {}
+  globalOptions: GlobalOptions
   constructor (Vue: Component, globalOptions?: GlobalOptions) {
     this.Vue = Vue
     this.$root = {}

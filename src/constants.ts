@@ -6,8 +6,8 @@ export interface GlobalOptions {
   title?: string
   message?: string
   dialogType?: DIALOG_TYPES
-  okText?: string,
-  cancelText?: string
+  okText: string,
+  cancelText: string
   html?: string
   actions?: null | Array<Action>
 }

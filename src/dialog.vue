@@ -43,6 +43,7 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class VueDialogXComponent extends Vue {
+  [index: string]: any
   resolve: Function = () => {}
   reject: Function = () => {}
   title: string = ''
@@ -71,7 +72,7 @@ export default class VueDialogXComponent extends Vue {
     return this.dialogType === DIALOG_TYPES.DIALOG
   }
 
-  commit (options: GlobalOptions, type: DIALOG_TYPES): void {
+  commit (options: GlobalOptions): void {
     let _data = Object.assign(this.$data, options)
     for (let key in _data) {
       this[key] = _data[key]
@@ -79,7 +80,7 @@ export default class VueDialogXComponent extends Vue {
   }
 
   confirm (idx: number) {
-    let result: boolean = true
+    let result: boolean | string | number = true
     if (this.showField) {
       result = this.fieldMessage
     } else if (this.showActions) {
@@ -89,7 +90,7 @@ export default class VueDialogXComponent extends Vue {
     this.resolve(result)
   }
 
-  disableTouchmove (e): void {
+  disableTouchmove (e: Event): void {
     e.preventDefault()
   }
 
