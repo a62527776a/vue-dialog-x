@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from 'vue-test-utils'
-import main from '../../../src/main.js'
+import main from '../../../src/main'
 
 describe('main.js', () => {
   const localVue = createLocalVue()
