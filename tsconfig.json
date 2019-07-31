@@ -21,7 +21,7 @@
     "jsxFactory": "h"
   },
   "include": [
-    "./src/*.ts", "vuedialogx.d.ts", "test/unit/specs/index.spec.js"
+    "./src/*.ts", "dist/vue-dialog-x.d.ts", "test/unit/specs/index.spec.js"
   ],
   "compileOnSave": true
 }
