@@ -1,8 +1,13 @@
-import Vue, { VueConstructor } from 'vue'
+import { VueConstructor } from 'vue'
 import DialogXComponent from './dialog.vue'
 
-export interface VueDialogXComponent extends Vue {
+export interface VueDialogXComponent {
   commit: Function
+  $mount: Function,
+  $off: Function
+  $destroy: Function
+  $el: HTMLDivElement
+  $on: Function
 }
 
 export const disableTouchmove = (e: Event): void => {
