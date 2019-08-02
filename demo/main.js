@@ -18,3 +18,5 @@ Vue.use(VueDialogX)
 let app = new Vue({
   render: (h) => h(App)
 }).$mount('#app')
+
+app

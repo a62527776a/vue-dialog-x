@@ -1,6 +1,6 @@
 {
   "name": "vue-dialog-x",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "/dist/vue-dialog-x.js",
   "scripts": {
     "test": "cross-env BABEL_ENV=test karma start ./test/unit/karma.conf.js",
