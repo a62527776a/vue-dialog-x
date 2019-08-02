@@ -6,11 +6,12 @@ Vue.config.productionTip = false
 
 // console.log(VueDialogX)
 
-let vx = new VueDialogX.VueDialogX(Vue)
+// let vx = new VueDialogX.VueDialogX(Vue)
 
-vx.alert({})
-vx.confirm({})
-vx.dialog({})
+// vx.alert({})
+// vx.confirm({})
+// vx.dialog({})
+// let a = vx
 
 Vue.use(VueDialogX)
 

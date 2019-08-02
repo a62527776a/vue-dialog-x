@@ -65,5 +65,9 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin()
-  ]
+  ],
+  externals: {
+    vue: 'Vue',
+    'vue-class-component': 'vue-class-component'
+  }
 }

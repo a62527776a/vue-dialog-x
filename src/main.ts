@@ -1,5 +1,4 @@
 import { DIALOG_TYPES, DEFAULT_OPTIONS, GlobalOptions } from './constants'
-import Vue, { VueConstructor } from 'vue'
 import { createVm, VueDialogXComponent } from './utils'
 
 interface VueDialogXComponentObject {
@@ -13,10 +12,10 @@ interface OpenOpt extends GlobalOptions {
 }
 
 class VueDialogX {
-  Vue: VueConstructor
+  Vue: any
   $root: VueDialogXComponentObject
   globalOptions: GlobalOptions
-  constructor (Vue: VueConstructor, globalOptions?: GlobalOptions) {
+  constructor (Vue: any, globalOptions?: GlobalOptions) {
     this.Vue = Vue
     this.$root = {}
     if (globalOptions) this.globalOptions = globalOptions
@@ -36,7 +35,7 @@ class VueDialogX {
   }
 
   mountIfNotMounted (_id?: number): number {
-    let vm: VueDialogXComponent = createVm(Vue)
+    let vm: VueDialogXComponent = createVm(this.Vue)
     let id: number = 0
     _id ? id = _id : id = new Date().valueOf()
     this.$root[id] = vm
@@ -75,7 +74,7 @@ class VueDialogX {
 
 }
 
-const install = (Vue: VueConstructor, options?: GlobalOptions) => {
+const install = (Vue: any, options?: GlobalOptions) => {
   Vue.prototype.$dialog = new VueDialogX(Vue, options)
 }
 
