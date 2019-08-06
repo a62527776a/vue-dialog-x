@@ -27,11 +27,15 @@ or
 $ npm install vue-dialog-x
 ```
 
+VueDialogX 提供两种挂载方式
+一种使用Vue.use的方式挂载
+
 ```
 // main.js
+
 import App from './App.vue'
-import VueDialogX from 'vue-dialog-x'
 import Vue from 'vue'
+import VueDialogX from 'vue-dialog-x'
 
 const globalOpt = {
   title: '提示',
@@ -39,98 +43,65 @@ const globalOpt = {
   cancelText: '取消'
 }
 
-Vue.use(VueDialogX,
-  globalOpt // 可选
-)
+// 使用这种方法，将会再Vue原型链上
+// 挂载一个$dialog的实例
+// 业务内调用this.$dialog.xxx即可吊起弹窗
+// globalOpt全局配置项查看下表*
+Vue.use(VueDialogX, globalOpt)
+
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
+```
+or
+```
+// main.js
+
+import App from './App.vue'
+import Vue from 'vue'
+import { VueDialogX } from 'vue-dialog-x'
+
+const globalOpt = {
+  title: '提示',
+  okText: '确认',
+  cancelText: '取消'
+}
+
+// 如果不希望在Vue原型链上挂载
+// 则自行new一个Dialog实例
+// 业务内调用VueDialogX.xxx即可吊起弹窗
+// globalOpt全局配置项查看下表*
+const dialogX = new VueDialogX(Vue, globalOpt)
+
+// 或者将这个实例挂载在Vue原型链上
+// 则和Vue.use相同的效果
+Vue.prototype.$dialog = dialogX
 
 new Vue({
   render: h => h(App)
 }).$mount('#app')
 ```
 
-```
-// App.vue
-<script>
-export default {
-  name: 'xxx',
-  data () {
-    return {
-      actions: [
-        {
-          okText: '操作1'
-        },
-        {
-          okText: '操作2'
-        },
-        {
-          okText: '操作3'
-        },
-        {
-          okText: '操作4'
-        }
-      ]
-    }
-  },
-  methods: {
-    handleDialog: async function () {
-      await this.$dialog.alert()
-      await this.$dialog.confirm()
-      let result = await this.$dialog.prompt()
-      console.log(result) // 将返回用户在prompt弹窗中填写的内容
-      let result = await this.$dialog.actions({
-        actions: this.actions,
-        message: '这个是多个选项的弹窗提示'
-      })
-      console.log(result) // 将返回下标
-    }
-  }
-}
-</script>
-```
+* <a href="#GlobalOpt">globalOpt</a> 全局配置项
 
 # API
 
-```
-const opt = {
-  title: '提示',
-  message: '',
-  okText: '确认',
-  cancelText: '取消',
-  html: ''
-}
+###### <span id="GlobalOpt">GlobalOpt 全局配置</span>
 
-this.$dialog.alert(opt)
-this.$dialog.confirm(opt)
-this.$dialog.prompt(opt)
+fields|type|default
+|--   |-|-|
+|title|string|'提示'|
+|message|string|''|
+|okText|string|'确认'|
+|cancelText|string|'取消'|
 
----------------------------------------------------------------------
+# Methods
+###### VueDialog 实例方法
 
-this.$dialog.dialog({
-  html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
-}) // 仅支持图片
-
-----------------------------------------------------------------------------
-
-const actionsOpt = {
-  message: '这个是多个选项的弹窗提示',
-  actions: [
-    {
-      okText: '操作1'
-    },
-    {
-      okText: '操作2'
-    },
-    {
-      okText: '操作3'
-    },
-    {
-      okText: '操作4'
-    }
-  ]
-}
-
-let result = await this.$dialog.actions(actionsOpt)
-this.$dialog.alert({
-  message: '点击了第' + (result + 1) + '个按钮'
-})
-```
+name|describe
+|---|-------|
+alert|只有确认按钮的弹出框
+confirm|包含确认按钮以及取消按钮
+prompt|包含确认按钮、取消按钮以及输入框
+actions|包含多个自定义选项的输入框
+dialog|用于自定义图片的弹窗
