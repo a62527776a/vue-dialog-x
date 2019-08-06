@@ -1,12 +1,12 @@
 {
   "name": "vue-dialog-x",
-  "version": "0.0.8",
-  "main": "/dist/vue-dialog-x.js",
+  "version": "0.0.9",
+  "main": "dist/vue-dialog-x.js",
   "scripts": {
     "test": "cross-env BABEL_ENV=test karma start ./test/unit/karma.conf.js",
-    "build": "webpack --config ./webpack.config.js",
-    "demo-build": "webpack --config ./demo/webpack.prod.config.js",
-    "dev": "webpack-dev-server --inline --progress --config demo/webpack.dev.config.js",
+    "build": "webpack --config build/webpack.build.config.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.config.js",
+    "demo-build": "webpack --config build/webpack.demo.build.config.js",
     "release": "npm run build && npm run demo-build && npm publish"
   },
   "dependencies": {},
