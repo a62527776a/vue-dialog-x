@@ -9,10 +9,7 @@ const webpackConfig = {
   plugins: [
     // 请确保引入这个插件！
     new VueLoaderPlugin()
-  ],
-  externals: {
-    vue: 'vue'
-  }
+  ]
 }
 
 module.exports = Object.assign(webpackBaseConfig, webpackConfig)
