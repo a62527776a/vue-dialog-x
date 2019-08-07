@@ -1,11 +1,11 @@
 <template lang="pug">
 .dialog-x(@touchmove.prevent="disableTouchmove")
-  transition(name="fade")
-    .dialog-x-window(v-if="show")
-  transition(
+  transition-group(name="fade")
+    .dialog-x-window(v-if="show" key="dialogXWindow")
+  transition-group(
     name="modal-popup-in"
     @after-leave="transitionend")
-    .dialog-x-pannel(v-if="show")
+    .dialog-x-pannel(v-if="show" key="dialogXPannel")
       .dialog-x-inner(:class="{ 'dialog-x-radius' : showDialog }")
         .dialog-x-title(v-if="!showDialog") {{title}}
         .dialog-x-message(v-if="!html") {{message}}
@@ -105,7 +105,7 @@ export default class VueDialogXComponent extends Vue {
     }
   }
 
-  mouent () {
+  mounted () {
     this.show = true
   }
 }
