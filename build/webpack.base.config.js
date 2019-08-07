@@ -35,8 +35,13 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: 'ts-loader',
-        options: { appendTsSuffixTo: [/\.vue$/] }
+        use: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: { appendTsSuffixTo: [/\.vue$/] }
+          }
+        ]
       },
       {
         test: /\.pug$/,

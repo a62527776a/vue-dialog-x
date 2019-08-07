@@ -5,6 +5,13 @@ declare module "*.vue" {
   export default Vue
 }
 
+declare global {
+  interface Window {
+    Vue: Function,
+    VueDialogX: Function
+  }
+}
+
 declare module 'vue/types/vue' {
   interface Vue {
     $dialog: string

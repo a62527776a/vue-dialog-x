@@ -74,8 +74,14 @@ class VueDialogX {
 
 }
 
+
+
 const install = (Vue: any, options?: GlobalOptions) => {
   Vue.prototype.$dialog = new VueDialogX(Vue, options)
+}
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.VueDialogX = VueDialogX
 }
 
 export default {

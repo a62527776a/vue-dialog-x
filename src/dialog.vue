@@ -105,7 +105,7 @@ export default class VueDialogXComponent extends Vue {
     }
   }
 
-  mounted () {
+  mouent () {
     this.show = true
   }
 }
