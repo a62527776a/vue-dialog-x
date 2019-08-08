@@ -4,6 +4,14 @@
     <p>
       VueDialogX是一个iOS风格的弹窗对话框。
     </p>
+    <p align="center">
+      <a href="https://travis-ci.org/a62527776a/vue-dialog-x">
+        <img src="https://travis-ci.org/a62527776a/vue-dialog-x.svg?branch=master">
+      </a>
+      <a href='https://coveralls.io/github/a62527776a/vue-dialog-x?branch=master'><img src='https://coveralls.io/repos/github/a62527776a/vue-dialog-x/badge.svg?branch=master' alt='Coverage Status' /></a>
+      <a href="https://www.npmjs.com/package/vue-dialog-x"><img src="https://img.shields.io/npm/dm/vue-dialog-x.svg" /></a>
+      <br>
+    </p>
     <h3>使用</h3>
     <ul>
       <li><a @click="handleDialog('alert')" rel="noopener">Alert</a></li>
