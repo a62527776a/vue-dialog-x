@@ -116,10 +116,126 @@ fields|type|default
 # Methods
 ###### VueDialog 实例方法
 
-name|describe
-|---|-------|
-alert|只有确认按钮的弹出框
-confirm|包含确认按钮以及取消按钮
-prompt|包含确认按钮、取消按钮以及输入框
-actions|包含多个自定义选项的输入框
-dialog|用于自定义图片的弹窗
+name|param|describe|return
+|---|-----|-------|------|
+alert|<a href="#alertOpt">alertOpt</a>|只有确认按钮的弹出框|Promise< void>
+confirm|<a href="#confirmOpt">confirmOpt</a>|包含确认按钮以及取消按钮|Promise< void>
+prompt|<a href="#promptOpt">promptOpt</a>|包含确认按钮、取消按钮以及输入框 点击确认返回输入input的文字|Promise< string>
+actions|<a href="#actionsOpt">actionsOpt</a>|包含多个自定义选项的输入框 点击后返回点击按钮的下标|Promise< number>
+dialog|<a href="#dialogOpt">dialogOpt</a>|用于自定义图片的弹窗|Promise< void>
+
+#Param
+###### <span id="alertOpt">alertOpt</span>
+param   | type   | default | desc
+|----   | ----   | ------- | ----
+title   | string | '提示'   
+message | string | ''
+okText  | string | '确定'
+html    | string | ''      | 可以传入html片段 如若传入，将替换掉message内容
+
+```
+// example
+
+this.$dialog.alert({
+  title: '提示',
+  message: '请登陆后再试'
+})
+```
+
+###### <span id="confirmOpt">confirmOpt</span>
+param   | type   | default | desc
+|----   | ----   | ------- | ----
+title   | string | '提示'   
+message | string | ''
+okText  | string | '确定'
+cancelText| string | '取消'
+html    | string | ''      | 可以传入html片段 如若传入，将替换掉message内容
+
+```
+// example
+
+this.$dialog.confirm({
+  title: '提示',
+  message: '请登陆后再试'
+}).then(() => {
+  console.log('用户点击确定')
+}).catch(() => {
+  console.log('用户点击取消')
+})
+```
+
+###### <span id="promptOpt">promptOpt</span>
+param   | type   | default | desc
+|----   | ----   | ------- | ----
+title   | string | '提示'
+message | string | ''
+okText  | string | '确定'
+cancelText| string | '取消'
+
+```
+// example
+
+this.$dialog.prompt({
+  message: '请输入用户名'
+}).then(res => {
+  console.log('用户输入:' + res)
+}).catch(() => {
+  console.log('用户点击取消')
+})
+```
+
+###### <span id="actionsOpt">actionsOpt</span>
+param   | type   | default | desc
+|----   | ----   | ------- | ----
+title   | string | '提示'
+message | string | ''
+okText  | string | '确定'
+cancelText| string | '取消'
+actions | Array< <a href="#actionOpt">actionOpt</a>> | null | 
+
+###### <span id="actionOpt">actionOpt</span>
+param   | type   | default | desc
+|----   | ----   | ------- | ----
+okText   | string | ''
+
+```
+// example
+
+this.$dialog.actions({
+  title: '多选项卡',
+  message: 'Promise将返回点击按钮的下标',
+  actions: [
+    {
+      okText: '操作1'
+    },
+    {
+      okText: '操作2'
+    },
+    {
+      okText: '操作3'
+    },
+    {
+      okText: '操作4'
+    }
+  ]
+}).then(idx => {
+  console.log('用户点击第:' + idx + '个按钮')
+}).catch(() => {
+  console.log('用户点击取消')
+})
+```
+
+
+###### <span id="dialogOpt">dialogOpt</span>
+param   | type   | default | desc
+|----   | ----   | ------- | ----
+html   | string | ''       | 填入html片段 最好放image标签进去
+
+
+```
+// example
+
+this.$dialog.dialog({
+  html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
+})
+```
