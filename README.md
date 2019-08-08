@@ -124,7 +124,8 @@ prompt|<a href="#promptOpt">promptOpt</a>|包含确认按钮、取消按钮以�
 actions|<a href="#actionsOpt">actionsOpt</a>|包含多个自定义选项的输入框 点击后返回点击按钮的下标|Promise< number>
 dialog|<a href="#dialogOpt">dialogOpt</a>|用于自定义图片的弹窗|Promise< void>
 
-#Param
+# Param 
+
 ###### <span id="alertOpt">alertOpt</span>
 param   | type   | default | desc
 |----   | ----   | ------- | ----
