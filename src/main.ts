@@ -52,23 +52,23 @@ class VueDialogX {
   }
 
   
-  confirm (opt: OpenOpt) {
+  confirm (opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.CONFIRM)
   }
 
-  alert (opt: OpenOpt) {
+  alert (opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.ALERT)
   }
 
-  prompt (opt: OpenOpt) {
+  prompt (opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.PROMPT)
   }
 
-  actions (opt: OpenOpt) {
+  actions (opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.ACTIONS)
   }
 
-  dialog (opt: OpenOpt) {
+  dialog (opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.DIALOG)
   }
 
