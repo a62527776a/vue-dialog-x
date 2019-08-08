@@ -3,10 +3,6 @@ const path = require('path')
 module.exports = {
   context: path.resolve(__dirname, '../'),
   resolve: {
-    // 将 `.ts` 添加为一个可解析的扩展名。
-    extensions: ['.ts', '.js']
-  },
-  resolve: {
     extensions: ['.ts', '.js', '.vue']
   },
   module: {
@@ -35,6 +31,7 @@ module.exports = {
       },
       {
         test: /\.ts$/,
+        exclude: /node_modules/,
         use: [
           'babel-loader',
           {

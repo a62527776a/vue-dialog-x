@@ -10,11 +10,8 @@ const webpackConfig = {
   },
   output: {
     path: path.join(__dirname, '../dist/'),
-    filename: 'vue-dialog-x.js',
+    filename: 'vue-dialog-x.window.js',
     libraryTarget: 'umd'
-  },
-  externals: {
-    vue: 'vue'
   },
   plugins: [
     // 请确保引入这个插件！

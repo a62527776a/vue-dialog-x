@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const webpackConfig = {
+  mode: 'development',
   entry: {
     main: path.join(__dirname, '../demo/main.js')
   },
