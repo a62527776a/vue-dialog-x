@@ -71,7 +71,7 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 ```
-or
+也可以引入VueDialogX来自行初始化实例
 ```
 // main.js
 
