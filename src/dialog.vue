@@ -54,6 +54,7 @@ export default class VueDialogXComponent extends Vue {
   okText:string = DEFAULT_OPTIONS.okText
   cancelText:string = DEFAULT_OPTIONS.cancelText
   html: string = ''
+  wait: null | Function = null
   actions: Array<Action> | null
 
   get showCancel (): boolean {
@@ -86,6 +87,16 @@ export default class VueDialogXComponent extends Vue {
     } else if (this.showActions) {
       result = idx
     }
+    if (this.wait) {
+      this.wait(() => {
+        this.callBackFn(result)
+      })
+    } else {
+      this.callBackFn(result)
+    }
+  }
+
+  callBackFn (result: boolean | string | number) {
     this.show = false
     this.resolve(result)
   }

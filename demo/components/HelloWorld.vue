@@ -27,6 +27,7 @@
         <textarea v-model="htmlString"></textarea>
       </li>
       <li><a @click="handleImgHTMLDialog" rel="noopener">自定义HTML（图片）</a></li>
+      <li><a @click="handleWaitDialog" rel="noopener">异步关闭</a></li>
     </ul>
     <h3>Essential Links</h3>
     <ul>
@@ -80,6 +81,17 @@ export default {
       this.$dialog.alert({
         title: '',
         html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
+      })
+    },
+    handleWaitDialog () {
+      this.$dialog.confirm({
+        title: '异步关闭',
+        message: '点击确定将在1s后关闭',
+        wait: next => {
+          setTimeout(() => {
+            next()
+          }, 1000);
+        }
       })
     },
     handleDialogDialog () {
