@@ -20,7 +20,25 @@
 ![弹窗图示](https://upload-images.jianshu.io/upload_images/5738345-0b61e6d1d6a27605.gif?imageMogr2/auto-orient/strip)
 
 ## Installation and use
+VueDialogX支持script标签引入
 
+```
+// index.html
+<script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script> // 必须先引入vuejs
+<script src="https://unpkg.com/vue-dialog-x/dist/vue-dialog-x.window.js" />
+
+<script>
+var Dialog = new window.VueDialogX(window.Vue)
+Dialog.alert({
+    title: '提示',
+    message: '测试'
+}).then(() => {
+    console.log('sss')
+})
+</script>
+```
+
+对于工程化项目，VueDialogX提供umd方式引入
 ```
 $ yarn add vue-dialog-x
 or
