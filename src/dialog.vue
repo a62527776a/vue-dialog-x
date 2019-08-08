@@ -18,12 +18,14 @@
         .dialog-x-action-bar.dialog-x-btn-radius(v-if="!showActions")
           .dialog-x-btn(
             @click="confirm"
-            @touchstart="") {{okText}}
+            @touchstart="") 
+              <svg v-if="loading" class="lds-spinner" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="rotate(0 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(30 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(60 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(90 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(120 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(150 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(180 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(210 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(240 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(270 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(300 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(330 50 50)"><rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#c6c6c6"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate></rect></g></svg>
+              <a v-else>{{okText}}</a>
           .dialog-x-cell
           .dialog-x-btn(
             @click="cancel"
             @touchstart=""
-            v-if="showCancel") {{cancelText}}
+            v-if="showCancel && !loading") {{cancelText}}
         .dialog-x-action-bar(
           v-for="(act, idx) in actions"
           :class="{ 'dialog-x-btn-radius' : idx === (actions.length - 1) }")
@@ -53,8 +55,11 @@ export default class VueDialogXComponent extends Vue {
   dialogType:DIALOG_TYPES = DIALOG_TYPES.ALERT
   okText:string = DEFAULT_OPTIONS.okText
   cancelText:string = DEFAULT_OPTIONS.cancelText
+  loading: boolean = false
   html: string = ''
   wait: null | Function = null
+  fieldMessageTest: null | Function = null
+  fieldMessageError: null | Function = null
   actions: Array<Action> | null
 
   get showCancel (): boolean {
@@ -81,6 +86,7 @@ export default class VueDialogXComponent extends Vue {
   }
 
   confirm (idx: number) {
+    if (this.loading) return
     let result: boolean | string | number = true
     if (this.showField) {
       result = this.fieldMessage
@@ -88,6 +94,13 @@ export default class VueDialogXComponent extends Vue {
       result = idx
     }
     if (this.wait) {
+      if (
+        this.fieldMessageTest 
+        && typeof this.fieldMessageTest === 'function'
+        && !this.fieldMessageTest(this.fieldMessage)) {
+          return (this.fieldMessageError && this.fieldMessageError(this.fieldMessage))
+        }
+      this.loading = true
       this.wait(() => {
         this.callBackFn(result)
       })
@@ -97,6 +110,7 @@ export default class VueDialogXComponent extends Vue {
   }
 
   callBackFn (result: boolean | string | number) {
+    this.loading = false
     this.show = false
     this.resolve(result)
   }

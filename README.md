@@ -15,7 +15,7 @@
 **[live demo](https://a62527776a.github.io/vue-dialog-x/)**
 
 ![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
-![8.gif](https://img.rr.tv/fe/2019715/confirm.gif)
+![8.gif](http://ued.rr.tv/0.3367761200861381%E5%BC%82%E6%AD%A5%E5%85%B3%E9%97%AD.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/actions.gif)
 ![弹窗图示](https://upload-images.jianshu.io/upload_images/5738345-0b61e6d1d6a27605.gif?imageMogr2/auto-orient/strip)
@@ -134,6 +134,7 @@ title   | string | '提示'
 message | string | ''
 okText  | string | '确定'
 html    | string | ''      | 可以传入html片段 如若传入，将替换掉message内容
+wait    | function | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用
 
 ```
 // example
@@ -142,6 +143,15 @@ this.$dialog.alert({
   title: '提示',
   message: '请登陆后再试'
 })
+
+this.$dialog.alert({
+  message: '点击确定将发送请求',
+  wait: async next => {
+    await this.$axios.get('xxx') // 请求开始按钮上的文字将变为一个小旋转菊花
+    next() // 请求结束后将结束loading状态
+  }
+})
+
 ```
 
 ###### <span id="confirmOpt">confirmOpt</span>
@@ -152,7 +162,7 @@ message | string | ''
 okText  | string | '确定'
 cancelText| string | '取消'
 html    | string | ''      | 可以传入html片段 如若传入，将替换掉message内容
-
+wait    | function | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用 效果与alert wait 类似 但是一旦进入加载状态 将隐藏取消按钮
 ```
 // example
 
@@ -173,7 +183,9 @@ title   | string | '提示'
 message | string | ''
 okText  | string | '确定'
 cancelText| string | '取消'
-
+wait    | function | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用 效果与alert wait 类似 但是一旦进入加载状态 将隐藏取消按钮
+fieldMessageTest | function | null | 非必填，如果传入 必须返回boolean值 返回true验证通过，返回false验证失败，并会尝试调用fieldMessageError字段的函数
+fieldMessageError | function | null | 非必填，如果fieldMessageTest函数返回false，将调用本函数
 ```
 // example
 
@@ -184,6 +196,23 @@ this.$dialog.prompt({
 }).catch(() => {
   console.log('用户点击取消')
 })
+
+this.$dialog.prompt({
+  message: '请输入用户名'
+  fieldMessageTest: fieldMessage => { // 将回调弹窗中输入框的内容
+    return fieldMessage ? true : false
+  }
+  fieldMessageError: fieldMessage => { // 可以做一些提示
+    this.$dialog.alert({
+      message: '请填写正确信息'
+    })
+  }
+}).then(res => {
+  console.log('用户输入:' + res)
+}).catch(() => {
+  console.log('用户点击取消')
+})
+
 ```
 
 ###### <span id="actionsOpt">actionsOpt</span>

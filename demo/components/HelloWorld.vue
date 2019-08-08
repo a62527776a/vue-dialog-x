@@ -26,8 +26,10 @@
         <a @click="handleHTMLDialog" rel="noopener">渲染HTML模板</a>
         <textarea v-model="htmlString"></textarea>
       </li>
-      <li><a @click="handleImgHTMLDialog" rel="noopener">自定义HTML（图片）</a></li>
-      <li><a @click="handleWaitDialog" rel="noopener">异步关闭</a></li>
+      <li><a @click="handleImgHTMLDialog" rel="noopener">自定义HTML（图片）</a></li><br /><br />
+      <li><a @click="handleWaitDialog('alert')" rel="noopener">异步关闭(alert)</a></li>
+      <li><a @click="handleWaitDialog('confirm')" rel="noopener">异步关闭(confirm)</a></li>
+      <li><a @click="handleWaitPromptDialog" rel="noopener">异步关闭&文本域检查(prompt)</a></li>
     </ul>
     <h3>Essential Links</h3>
     <ul>
@@ -83,8 +85,27 @@ export default {
         html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
       })
     },
-    handleWaitDialog () {
-      this.$dialog.confirm({
+    async handleWaitPromptDialog () {
+      let result = await this.$dialog.prompt({
+        title: '异步关闭&域文本检查',
+        message: '调用fieldMessageTest函数返回false将调用传入fieldMessageError字段的函数',
+        fieldMessageTest: (fieldMessage) => {
+          return fieldMessage
+        },
+        fieldMessageError: (fieldMessage) => {
+          this.$dialog.alert({
+            message: '请填写正确信息'
+          })
+        },
+        wait: function (next) {
+          setTimeout(() => {
+            next()
+          }, 1000)
+        }
+      })
+    },
+    handleWaitDialog (type) {
+      this.$dialog[type]({
         title: '异步关闭',
         message: '点击确定将在1s后关闭',
         wait: next => {
