@@ -14,30 +14,37 @@
       <img alt="npm type definitions" src="https://img.shields.io/npm/types/vue-dialog-x">
       <img alt="npm" src="https://img.shields.io/npm/v/vue-dialog-x">
     </p>
-    <h3>使用</h3>
+    <h3>基础用法</h3>
     <ul>
-      <li><a @click="handleDialog('alert')" rel="noopener">Alert</a></li>
-      <li><a @click="handleDialog('confirm')" rel="noopener">Confirm</a></li>
-      <li><a @click="handleDialog('prompt')" rel="noopener">Prompt</a></li>
-      <li><a @click="handleActionsDialog" rel="noopener">Actions</a></li>
-      <li><a @click="handleDialogDialog" rel="noopener">Dialog</a></li>
+      <li><a class="alert-btn" @click="handleDialog('alert')" rel="noopener">Alert</a></li>
+      <li><a class="alert-btn" @click="handleDialog('confirm')" rel="noopener">Confirm</a></li>
+      <li><a class="alert-btn" @click="handleDialog('prompt')" rel="noopener">Prompt</a></li>
+      <li><a class="alert-btn" @click="handleActionsDialog" rel="noopener">Actions</a></li>
+      <li><a class="alert-btn" @click="handleDialogDialog" rel="noopener">Dialog</a></li>
     </ul>
-    <h3>特性</h3>
+    <h3>异步关闭</h3>
+    <ul>
+      <li><a class="alert-btn" @click="handleWaitDialog('alert')" rel="noopener">异步关闭(alert)</a></li>
+      <li><a class="alert-btn" @click="handleWaitDialog('confirm')" rel="noopener">异步关闭(confirm)</a></li>
+      <li><a class="alert-btn" @click="handleWaitActionsDialog" rel="noopener">异步关闭(actions)</a></li>
+      <li><a class="alert-btn" @click="handleWaitPromptDialog" rel="noopener">异步关闭(prompt)</a></li>
+    </ul>
+    <h3>文本域检查</h3>
+    <ul>
+      <li><a class="alert-btn" @click="handleWaitPromptDialog" rel="noopener">文本域检查(prompt)</a></li>
+    </ul>
+    <h3>自定义渲染</h3>
     <ul>
       <li>
-        <a @click="handleHTMLDialog" rel="noopener">渲染HTML模板</a>
+        <a @click="handleHTMLDialog" class="alert-btn" rel="noopener">渲染HTML模板</a>
         <textarea v-model="htmlString"></textarea>
       </li>
-      <li><a @click="handleImgHTMLDialog" rel="noopener">自定义HTML（图片）</a></li><br /><br />
-      <li><a @click="handleWaitDialog('alert')" rel="noopener">异步关闭(alert)</a></li>
-      <li><a @click="handleWaitDialog('confirm')" rel="noopener">异步关闭(confirm)</a></li>
-      <li><a @click="handleWaitActionsDialog" rel="noopener">异步关闭(actions)</a></li>
-      <li><a @click="handleWaitPromptDialog" rel="noopener">异步关闭&文本域检查(prompt)</a></li>
+      <li><a class="alert-btn" @click="handleImgHTMLDialog" rel="noopener">自定义HTML（图片）</a></li><br /><br />
     </ul>
     <h3>Essential Links</h3>
     <ul>
-      <li><a href="https://github.com/a62527776a/vue-dialog-x" target="_blank" rel="noopener">Github</a></li>
-      <li><a href="https://github.com/a62527776a/vue-dialog-x/blob/master/demo/components/HelloWorld.vue" target="_blank" rel="noopener">实例代码</a></li>
+      <li><a class="alert-btn" href="https://github.com/a62527776a/vue-dialog-x" target="_blank" rel="noopener">Github</a></li>
+      <li><a class="alert-btn" href="https://github.com/a62527776a/vue-dialog-x/blob/master/demo/components/HelloWorld.vue" target="_blank" rel="noopener">实例代码</a></li>
     </ul>
     <!-- <h3>Ecosystem</h3>
     <ul>
@@ -116,7 +123,7 @@ export default {
     async handleWaitPromptDialog () {
       let result = await this.$dialog.prompt({
         title: '异步关闭&域文本检查',
-        message: '调用fieldMessageTest函数返回false将调用传入fieldMessageError字段的函数',
+        message: '调用fieldMessageTest函数返回false将调用传入fieldMessageError字段的函数，异步关闭和域文本检查可以复合使用',
         fieldMessageTest: (fieldMessage) => {
           return fieldMessage
         },
@@ -180,6 +187,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
+.alert-btn
+  cursor: pointer
 h3
   margin: 40px 0 0;
 ul

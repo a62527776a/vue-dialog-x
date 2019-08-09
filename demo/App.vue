@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app">
+  <div id="app" class="app container">
     <!-- <h1 @click="handleDialog">Alert</h1> -->
     <HelloWorld msg="欢迎使用 Vue-Dialog-X"/>
   </div>

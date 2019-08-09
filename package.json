@@ -8,7 +8,8 @@
     "build-window": "webpack --config build/webpack.build.window.config.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.config.js",
     "demo-build": "webpack --config build/webpack.demo.build.config.js",
-    "release": "npm run build && npm run build-window && npm run demo-build && npm run test && git add . && git commit . -m '发布新版本' && git push && npm publish",
+    "release": "npm run build && npm run build-window && npm run demo-build && git add . && git commit . -m '发布新版本' && git push && npm publish",
+    "publish-demo": "npm run demo-build && git add . && git commit . -m '更新官网' && git push",
     "precommit": "npm run test"
   },
   "dependencies": {
