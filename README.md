@@ -146,6 +146,7 @@ this.$dialog.alert({
   message: '请登陆后再试'
 })
 
+// 异步关闭
 this.$dialog.alert({
   message: '点击确定将发送请求',
   wait: async next => {
