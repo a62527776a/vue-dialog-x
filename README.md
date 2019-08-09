@@ -10,7 +10,6 @@
   </a>
   <img alt="npm type definitions" src="https://img.shields.io/npm/types/vue-dialog-x">
   <img alt="npm" src="https://img.shields.io/npm/v/vue-dialog-x">
-  <img alt="npm" src="https://img.shields.io/npm/dw/vue-dialog-x">
 </p>
 
 ##### 支持Promise的iOS样式风格的弹窗提示
