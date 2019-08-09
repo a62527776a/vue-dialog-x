@@ -94,12 +94,7 @@ export default class VueDialogXComponent extends Vue {
       result = idx
     }
     if (this.wait) {
-      if (
-        this.fieldMessageTest 
-        && typeof this.fieldMessageTest === 'function'
-        && !this.fieldMessageTest(this.fieldMessage)) {
-          return (this.fieldMessageError && this.fieldMessageError(this.fieldMessage))
-        }
+      if (!this.validationFieldMessageLegal()) return (this.fieldMessageError && this.fieldMessageError(this.fieldMessage))
       this.loading = true
       this.wait(() => {
         this.callBackFn(result)
@@ -107,6 +102,18 @@ export default class VueDialogXComponent extends Vue {
     } else {
       this.callBackFn(result)
     }
+  }
+
+  /**
+   * @method validationFieldMessageLegal 验证域文本合法性
+   * @return { boolean }
+   */
+  validationFieldMessageLegal (): boolean {
+    if (!this.fieldMessageTest) return true
+    if (typeof this.fieldMessageTest !== 'function') {
+      throw new Error('fieldMessageTest字段如果填写，则必须为function类型')
+    }
+    return this.fieldMessageTest(this.fieldMessage)
   }
 
   callBackFn (result: boolean | string | number) {

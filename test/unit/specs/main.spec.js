@@ -142,4 +142,76 @@ describe('main.js', () => {
       done()
     }, 200)
   })
+  it('异步关闭', (done) => {
+    let a = 4
+    let b = 5
+    let wait = next => {
+      setTimeout(() => {
+        b = a
+        next()
+      }, 700)
+    }
+    App = new localVue()
+    App.$dialog.confirm({
+      wait,
+      id
+    }).then(() => {
+      expect(b).toEqual(a)
+      expect(App.$dialog.$root[id].loading).toEqual(false)
+      done()
+    })
+    App.$dialog.$root[id].confirm()
+    expect(App.$dialog.$root[id].loading).toEqual(true)
+  })
+  it('validationFieldMessageLegal', () => {
+    App = new localVue()
+    App.$dialog.prompt({
+      id
+    })
+    expect(App.$dialog.$root[id].validationFieldMessageLegal()).toEqual(true)
+    let newApp = new localVue()
+    let fieldMessageTestReturnMessage = '测试返回数据'
+    newApp.$dialog.prompt({
+      fieldMessageTest: () => fieldMessageTestReturnMessage,
+      id
+    })
+    expect(newApp.$dialog.$root[id].validationFieldMessageLegal()).toEqual(fieldMessageTestReturnMessage)
+  })
+  it('callBackFn', (done) => {
+    App = new localVue()
+    App.$dialog.prompt({
+      id
+    })
+    let num = 3
+    let newnumber = 12
+    App.$dialog.$root[id].resolve = (param) => {num = param}
+    setTimeout(() => {
+      expect(App.$dialog.$root[id].loading).toEqual(false)
+      expect(App.$dialog.$root[id].show).toEqual(true)
+      App.$dialog.$root[id].callBackFn(newnumber)
+      expect(App.$dialog.$root[id].loading).toEqual(false)
+      expect(App.$dialog.$root[id].show).toEqual(false)
+      expect(num).toEqual(newnumber)
+      done()
+    }, 500)
+  })
+  it('cancel', (done) => {
+    App = new localVue()
+    App.$dialog.prompt({
+      id
+    })
+    let num = 3
+    let newnumber = 12
+    App.$dialog.prompt({
+      id
+    })
+    App.$dialog.$root[id].reject = () => num = newnumber
+    setTimeout(() => {
+      expect(App.$dialog.$root[id].show).toEqual(true)
+      App.$dialog.$root[id].cancel()
+      expect(App.$dialog.$root[id].show).toEqual(false)
+      expect(num).toEqual(newnumber)
+      done()
+    }, 500)
+  })
 })
