@@ -214,4 +214,13 @@ describe('main.js', () => {
       done()
     }, 500)
   })
+  it('mountIfNotMounted', () => {
+    let VueDialogX = new main.VueDialogX(localVue)
+    let id = 888888
+    let _id = VueDialogX.mountIfNotMounted(id)
+    expect(_id).toEqual(id)
+    expect(_id in VueDialogX.$root).toEqual(true)
+    VueDialogX.$root[id].$emit('confirm')
+    expect(_id in VueDialogX.$root).toEqual(false)
+  })
 })
