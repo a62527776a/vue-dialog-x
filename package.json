@@ -8,9 +8,9 @@
     "build-window": "webpack --config build/webpack.build.window.config.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.config.js",
     "demo-build": "webpack --config build/webpack.demo.build.config.js",
-    "release": "npm run build && npm run build-window && npm run demo-build && npm run test && git add . && git commit . -m '发布新版本' && git push && npm publish"
+    "release": "npm run build && npm run build-window && npm run demo-build && npm run test && git add . && git commit . -m '发布新版本' && git push && npm publish",
+    "precommit": "npm run test"
   },
-  "pre-commit": "npm run test",
   "dependencies": {
     "vue-class-component": "^7.1.0",
     "vue-property-decorator": "^8.2.1"
@@ -41,6 +41,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
+    "git-pre-commit": "^2.1.4",
     "html-webpack-plugin": "^3.2.0",
     "jasmine-core": "2.5.2",
     "karma": "^4.2.0",
