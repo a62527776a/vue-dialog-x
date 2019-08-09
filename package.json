@@ -10,6 +10,7 @@
     "demo-build": "webpack --config build/webpack.demo.build.config.js",
     "release": "npm run build && npm run build-window && npm run demo-build && git add . && git commit . -m '发布新版本' && git push && npm publish"
   },
+  "pre-commit": "npm run test",
   "dependencies": {
     "vue-class-component": "^7.1.0",
     "vue-property-decorator": "^8.2.1"

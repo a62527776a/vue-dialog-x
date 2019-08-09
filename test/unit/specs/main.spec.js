@@ -52,7 +52,7 @@ describe('main.js', () => {
     })
     setTimeout(() => {
       expect(App.$dialog.$root[id].$el.querySelector(titleClass).innerHTML).toEqual(titleText)
-      expect(App.$dialog.$root[id].$el.querySelector(messageClass).innerHTML).toEqual(messageText)
+      expect(App.$dialog.$root[id].$el.querySelector(messageClass).querySelector('a').innerHTML).toEqual(messageText)
       expect(App.$dialog.$root[id].$el.querySelector(btnClass).innerHTML).toEqual(testOkText)
       expect(App.$dialog.$root[id].title).toEqual(titleText)
       expect(App.$dialog.$root[id].message).toEqual(messageText)
