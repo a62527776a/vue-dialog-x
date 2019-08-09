@@ -11,6 +11,8 @@
       <a href='https://coveralls.io/github/a62527776a/vue-dialog-x?branch=master'><img src='https://coveralls.io/repos/github/a62527776a/vue-dialog-x/badge.svg?branch=master' alt='Coverage Status' /></a>
       <a href="https://www.npmjs.com/package/vue-dialog-x"><img src="https://img.shields.io/npm/dm/vue-dialog-x.svg" /></a>
       <br>
+      <img alt="npm type definitions" src="https://img.shields.io/npm/types/vue-dialog-x">
+      <img alt="npm" src="https://img.shields.io/npm/v/vue-dialog-x">
     </p>
     <h3>使用</h3>
     <ul>
@@ -29,6 +31,7 @@
       <li><a @click="handleImgHTMLDialog" rel="noopener">自定义HTML（图片）</a></li><br /><br />
       <li><a @click="handleWaitDialog('alert')" rel="noopener">异步关闭(alert)</a></li>
       <li><a @click="handleWaitDialog('confirm')" rel="noopener">异步关闭(confirm)</a></li>
+      <li><a @click="handleWaitActionsDialog" rel="noopener">异步关闭(actions)</a></li>
       <li><a @click="handleWaitPromptDialog" rel="noopener">异步关闭&文本域检查(prompt)</a></li>
     </ul>
     <h3>Essential Links</h3>
@@ -85,6 +88,31 @@ export default {
         html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
       })
     },
+    async handleWaitActionsDialog () {
+      let result = await this.$dialog.actions({
+        title: '异步关闭',
+        message: '异步关闭过程中将冻结点击操作',
+        actions: [
+          {
+            okText: '操作1'
+          },
+          {
+            okText: '操作2'
+          },
+          {
+            okText: '操作3'
+          },
+          {
+            okText: '操作4'
+          }
+        ],
+        wait: function (next) {
+          setTimeout(() => {
+            next()
+          }, 1000)
+        }
+      })
+    },
     async handleWaitPromptDialog () {
       let result = await this.$dialog.prompt({
         title: '异步关闭&域文本检查',
@@ -107,7 +135,7 @@ export default {
     handleWaitDialog (type) {
       this.$dialog[type]({
         title: '异步关闭',
-        message: '点击确定将在1s后关闭',
+        message: '点击确定将在1s后关闭，异步关闭过程中将冻结点击操作',
         wait: next => {
           setTimeout(() => {
             next()

@@ -124,7 +124,7 @@ describe('main.js', () => {
       expect(App.$dialog.$root[id].showActions).toEqual(true)
       expect(App.$dialog.$root[id].actions.length).toEqual(actionList.length)
       expect(App.$dialog.$root[id].$el.querySelectorAll(itemBtnClass).length).toEqual(actionList.length)
-      expect(App.$dialog.$root[id].$el.querySelectorAll(itemBtnClass)[expectClickBtnIdx].innerHTML).toEqual(actionList[expectClickBtnIdx].okText)
+      expect(App.$dialog.$root[id].$el.querySelectorAll(itemBtnClass)[expectClickBtnIdx].querySelector('a').innerHTML).toEqual(actionList[expectClickBtnIdx].okText)
       App.$dialog.$root[id].$el.querySelectorAll(itemBtnClass)[expectClickBtnIdx].click()
     }, 200)
   })
