@@ -289,7 +289,7 @@ name|param|describe
 wait|<a href="#waitOpt">waitOpt</a>|异步式调用必须的函数 传入这个参数后将等待next函数调用
 ###### <span id="waitOpt">waitOpt</span>
 name|type|describe
-|---|-----|----|-------|
+|---|-----|----|
 next|function|当调用了next参数后，才会继续执行
 result|string/number|对于actions中的wait，将回调用户点击确定按钮的下标，对于prompt中的wait，将回调用户输入的文本
 
