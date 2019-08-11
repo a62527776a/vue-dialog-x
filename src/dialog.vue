@@ -1,11 +1,14 @@
 <template lang="pug">
 .dialog-x(@touchmove.prevent="disableTouchmove")
   transition-group(name="fade")
-    .dialog-x-window(v-if="show" key="dialogXWindow")
+    .dialog-x-window(v-if="show" 
+      :style="{zIndex: (zIndex - 1)}" key="dialogXWindow")
   transition-group(
     name="modal-popup-in"
     @after-leave="transitionend")
-    .dialog-x-pannel(v-if="show" key="dialogXPannel")
+    .dialog-x-pannel(v-if="show" 
+      :style="{zIndex: zIndex}"
+      key="dialogXPannel")
       .dialog-x-inner(:class="{ 'dialog-x-radius' : showDialog }")
         .dialog-x-title(v-if="!showDialog") {{title}}
         .dialog-x-message(v-if="!html") {{message}}
@@ -53,6 +56,7 @@ export default class VueDialogXComponent extends Vue {
   title: string = ''
   message: string = ''
   fieldMessage: string = ''
+  zIndex: number = new Date().getTime()
   show:boolean = false
   dialogType:DIALOG_TYPES = DIALOG_TYPES.ALERT
   okText:string = DEFAULT_OPTIONS.okText
