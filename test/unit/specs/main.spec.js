@@ -223,4 +223,42 @@ describe('main.js', () => {
     VueDialogX.$root[id].$emit('confirm')
     expect(_id in VueDialogX.$root).toEqual(false)
   })
+  it('prompt 函数的 wait 函数的 result参数是否符合预期', done => {
+    let expectMessage = 'test'
+    App = new localVue()
+    App.$dialog.prompt({
+      id,
+      wait: (next, result) => {
+        next()
+        expect(result).toBe(expectMessage)
+        done()
+      }
+    })
+    App.$dialog.$root[id].fieldMessage = expectMessage
+    App.$dialog.$root[id].confirm()
+  })
+  it('actions 函数的 wait 函数的 result参数是否符合预期', done => {
+    let clickActionsBtnIdx = 2
+    let actions = [{
+        okText: 0
+      },{
+        okText: 0
+      },{
+        okText: 0
+      },{
+        okText: 0
+      }
+    ]
+    App = new localVue()
+    App.$dialog.actions({
+      id,
+      actions,
+      wait: (next, result) => {
+        next()
+        expect(result).toBe(clickActionsBtnIdx)
+        done()
+      }
+    })
+    App.$dialog.$root[id].confirm(clickActionsBtnIdx)
+  })
 })

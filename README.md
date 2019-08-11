@@ -127,6 +127,13 @@ prompt|<a href="#promptOpt">promptOpt</a>|包含确认按钮、取消按钮以�
 actions|<a href="#actionsOpt">actionsOpt</a>|包含多个自定义选项的输入框 点击后返回点击按钮的下标|Promise< number>
 dialog|<a href="#dialogOpt">dialogOpt</a>|用于自定义图片的弹窗|Promise< void>
 
+```
+this.$dialog.alert({})
+this.$dialog.confirm()
+this.$dialog.prompt()
+this.$dialog.actions({})
+this.$dialog.dialog({})
+```
 # Param 
 
 ###### <span id="alertOpt">alertOpt</span>
@@ -136,7 +143,7 @@ title   | string | '提示'
 message | string | ''
 okText  | string | '确定'
 html    | string | ''      | 可以传入html片段 如若传入，将替换掉message内容
-wait    | function | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用
+<a href="#wait">wait</a>    | function | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用
 
 ```
 // example
@@ -165,7 +172,7 @@ message | string | ''
 okText  | string | '确定'
 cancelText| string | '取消'
 html    | string | ''      | 可以传入html片段 如若传入，将替换掉message内容
-wait    | function | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用 效果与alert wait 类似 但是一旦进入加载状态 将隐藏取消按钮
+<a href="#wait">wait</a>    | function | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用 效果与alert wait 类似 但是一旦进入加载状态 将隐藏取消按钮 点击确认才会调用wait
 ```
 // example
 
@@ -186,7 +193,7 @@ title   | string | '提示'
 message | string | ''
 okText  | string | '确定'
 cancelText| string | '取消'
-wait    | function | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用 效果与alert wait 类似 但是一旦进入加载状态 将隐藏取消按钮
+<a href="#wait">wait</a>    | function / null | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用 效果与alert wait 类似 但是一旦进入加载状态 将隐藏取消按钮 第二个参数将返回输入数据
 fieldMessageTest | function | null | 非必填，如果传入 必须返回boolean值 返回true验证通过，返回false验证失败，并会尝试调用fieldMessageError字段的函数
 fieldMessageError | function | null | 非必填，如果fieldMessageTest函数返回false，将调用本函数
 ```
@@ -226,6 +233,7 @@ message | string | ''
 okText  | string | '确定'
 cancelText| string | '取消'
 actions | Array< <a href="#actionOpt">actionOpt</a>> | null | 
+<a href="#wait">wait</a>    | function / null | null | 支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用 效果与alert wait 类似 但是一旦进入加载状态 将隐藏取消按钮 第二个参数将返回点击下标
 
 ###### <span id="actionOpt">actionOpt</span>
 param   | type   | default | desc
@@ -272,4 +280,62 @@ html   | string | ''       | 填入html片段 最好放image标签进去
 this.$dialog.dialog({
   html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
 })
+```
+
+
+###### <span id="wait">wait</span>
+name|param|describe
+|---|-----|-------|
+wait|<a href="#waitOpt">waitOpt</a>|异步式调用必须的函数 传入这个参数后将等待next函数调用
+###### <span id="waitOpt">waitOpt</span>
+name|type|describe
+|---|-----|----|-------|
+next|function|当调用了next参数后，才会继续执行
+result|string/number|对于actions中的wait，将回调用户点击确定按钮的下标，对于prompt中的wait，将回调用户输入的文本
+
+```
+methods: {
+  async dialog () {
+    this.$dialog.alert({
+      wait: async next => {
+        await fetch('xxx')
+        next()
+      }
+    })
+  },
+  async confirm () {
+    this.$dialog.alert({
+      wait: async next => { // 点击取消不会调用wait函数
+        await fetch('xxx')
+        next()
+      }
+    })
+  },
+  async actions () {
+    this.$dialog.actions({
+      wait: async (next, result) => { // actions会回调点击按钮的下标
+        await fetch('/user/' + result)
+        next()
+      }
+    })
+  },
+  async prompt () {
+    this.$dialog.prompt({
+      fieldMessageTest: fieldMessage => { // 一般配合着使用， 必须返回true或false 如果返回false，则调用fieldMessageError函数 且不执行wait
+        return fieldMessage ? true : false
+      }
+      fieldMessageError: fieldMessage => { // 可以做一些提示
+        this.$dialog.alert({
+          message: '请填写正确信息'
+        })
+      }
+      wait: async (next, result) => { // result会回调输入框的数据
+        await fetch('xxx', {body: {
+          name: result
+        }})
+        next()
+      }
+    })
+  }
+}
 ```

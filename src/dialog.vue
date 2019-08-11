@@ -102,7 +102,7 @@ export default class VueDialogXComponent extends Vue {
       this.loading = true
       this.wait(() => {
         this.callBackFn(result)
-      })
+      }, result)
     } else {
       this.callBackFn(result)
     }

@@ -113,7 +113,7 @@ export default {
             okText: '操作4'
           }
         ],
-        wait: function (next) {
+        wait: async (next, result) => {
           setTimeout(() => {
             next()
           }, 1000)
@@ -132,7 +132,8 @@ export default {
             message: '请填写正确信息'
           })
         },
-        wait: function (next) {
+        wait: (next, result) => {
+          console.log(result)
           setTimeout(() => {
             next()
           }, 1000)
