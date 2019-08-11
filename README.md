@@ -93,6 +93,11 @@ const globalOpt = {
 // 业务内调用VueDialogX.xxx即可吊起弹窗
 // globalOpt全局配置项查看下表*
 const dialogX = new VueDialogX(Vue, globalOpt)
+ 
+// 如果在页面内使用，则享受d.ts带来自动推导的便捷
+dialogX.alert({
+  message: '由于d.ts的存在，将会自动推导相关参数'
+})
 
 // 或者将这个实例挂载在Vue原型链上
 // 则和Vue.use相同的效果
