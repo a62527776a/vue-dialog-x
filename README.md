@@ -105,7 +105,7 @@ new Vue({
 
 * <a href="#GlobalOpt">globalOpt</a> 全局配置项
 
-# API
+# <span id="Api">Api</span>
 
 ###### <span id="GlobalOpt">GlobalOpt 全局配置</span>
 
