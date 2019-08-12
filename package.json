@@ -10,7 +10,9 @@
     "demo-build": "webpack --config build/webpack.demo.build.config.js",
     "release": "npm run test && npm run build && npm run build-window && npm run demo-build && git add . && git commit . -m '发布新版本' && git push && npm publish",
     "publish-demo": "npm run demo-build && git add . && git commit . -m '更新官网' && git push",
-    "precommit": "npm run test"
+    "precommit": "npm run test",
+    "docs:dev": "vuepress dev docs/",
+    "docs:build": "vuepress build docs/"
   },
   "dependencies": {
     "vue-class-component": "^7.1.0",
@@ -68,6 +70,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.13",
     "vue-test-utils": "^1.0.0-beta.11",
+    "vuepress": "^1.0.3",
     "webpack": "^4.32.0",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
