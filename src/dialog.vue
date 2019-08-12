@@ -101,8 +101,8 @@ export default class VueDialogXComponent extends Vue {
       result = idx
       this.selectActionIdx = idx
     }
+    if (!this.validationFieldMessageLegal()) return (this.fieldMessageError && this.fieldMessageError(this.fieldMessage))
     if (this.wait) {
-      if (!this.validationFieldMessageLegal()) return (this.fieldMessageError && this.fieldMessageError(this.fieldMessage))
       this.loading = true
       this.wait(() => {
         this.callBackFn(result)
