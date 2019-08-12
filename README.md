@@ -14,7 +14,8 @@
 
 ##### 支持Promise的iOS样式风格的弹窗提示
 
-**[live demo](https://a62527776a.github.io/vue-dialog-x/)**
+**[live demo](https://a62527776a.github.io/vue-dialog-x/)**  
+
 **[view code](https://codepen.io/collection/XQqjMJ/)**
 
 ![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
