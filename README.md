@@ -112,6 +112,8 @@ new Vue({
 
 # <span id="Api">Api</span>
 
+大佬可以直接看 <a href="https://github.com/a62527776a/vue-dialog-x/blob/master/dist/vue-dialog-x.d.ts">*vue-dialog-x.d.ts*</a>
+
 ###### <span id="GlobalOpt">GlobalOpt 全局配置</span>
 
 fields|type|default
