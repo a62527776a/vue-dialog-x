@@ -15,6 +15,7 @@
 ##### 支持Promise的iOS样式风格的弹窗提示
 
 **[live demo](https://a62527776a.github.io/vue-dialog-x/)**
+**[view code](https://codepen.io/collection/XQqjMJ/)**
 
 ![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
 ![8.gif](http://ued.rr.tv/0.3367761200861381%E5%BC%82%E6%AD%A5%E5%85%B3%E9%97%AD.gif)
@@ -109,6 +110,17 @@ new Vue({
 ```
 
 * <a href="#GlobalOpt">globalOpt</a> 全局配置项
+
+# <span>View Code</span>
+
+* **[alert基本用法](https://codepen.io/a62527776a/pen/vPawwj)**
+* **[confirm基本用法](https://codepen.io/a62527776a/pen/XvxGwG)**
+* **[prompt基本用法](https://codepen.io/a62527776a/pen/EqdMBB)**
+* **[actions基本用法](https://codepen.io/a62527776a/pen/MNPxNz)**
+* **[dialog基本用法](https://codepen.io/a62527776a/pen/WVaWNz)**
+* **[actions异步用法](https://codepen.io/a62527776a/pen/zgmXxV)**
+* **[prompt文本域检查](https://codepen.io/a62527776a/pen/PMygZJ)**
+
 
 # <span id="Api">Api</span>
 
