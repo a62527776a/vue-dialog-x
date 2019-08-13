@@ -15,7 +15,8 @@
 ##### 支持Promise的iOS样式风格的弹窗提示
 
 
-[Live demo](https://a62527776a.github.io/vue-dialog-x/)
+[Live demo](https://a62527776a.github.io/vue-dialog-x/) 
+
 [Homepage and documentation](https://a62527776a.github.io/vue-dialog-x/vuepress/)
 
 
