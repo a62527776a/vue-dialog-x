@@ -255,5 +255,5 @@ export default class VueDialogXComponent extends Vue {
     width: 20px;
     height: 20px;
 .dialog-x-btn-a-disable
-  color: #c0c4cc
+  color: #c0c4cc !important
 </style>
