@@ -82,7 +82,7 @@ const exampleActions = [
 
 ## 基础用法
 
-<button onclick="select()">多选项</button>
+<button class="button" onclick="select()">多选项</button>
 
 ``` js
 async () => {
@@ -98,7 +98,7 @@ async () => {
 
 ## 异步关闭
 
-<button onclick="waitSelect()">异步关闭</button>
+<button class="button" onclick="waitSelect()">异步关闭</button>
 
 
 ``` js

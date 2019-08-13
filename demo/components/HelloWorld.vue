@@ -44,8 +44,7 @@
     <h3>Essential Links</h3>
     <ul>
       <li><a class="alert-btn" href="https://github.com/a62527776a/vue-dialog-x" target="_blank" rel="noopener">Github</a></li>
-      <li><a class="alert-btn" href="https://github.com/a62527776a/vue-dialog-x/blob/master/demo/components/HelloWorld.vue" target="_blank" rel="noopener">实例代码</a></li>
-      <li><a class="alert-btn" href="https://codepen.io/collection/XQqjMJ/" target="_blank" rel="noopener">Code Pen</a></li>
+      <li><a class="alert-btn" href="https://a62527776a.github.io/vue-dialog-x/vuepress/" target="_blank" rel="noopener">官网 && Apidoc</a></li>
     </ul>
     <!-- <h3>Ecosystem</h3>
     <ul>

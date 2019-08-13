@@ -23,7 +23,7 @@ wait    | function | null | 支持异步式调用 传入next参数 并在函数�
 
 ## 基础用法
 
-<button onclick="window.dialogX.alert({message: '普通弹窗'})">example</button>
+<button class="button" onclick="window.dialogX.alert({message: '普通弹窗'})">example</button>
 
 ``` js
 this.$dialog.alert({
@@ -33,7 +33,7 @@ this.$dialog.alert({
 ```
 ## 异步关闭用法
 
-<button onclick="window.dialogX.alert({message: '异步关闭的弹窗', wait: next => setTimeout(() => next(), 1500) })">异步关闭</button>
+<button class="button" onclick="window.dialogX.alert({message: '异步关闭的弹窗', wait: next => setTimeout(() => next(), 1500) })">异步关闭</button>
 
 ``` js
 this.$dialog.alert({

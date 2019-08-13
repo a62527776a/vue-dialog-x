@@ -24,7 +24,7 @@ html    | string | ''      | 可以传入html片段
 
 ## 基础用法
 
-<button onclick="notice()">notice</button>
+<button class="button" onclick="notice()">notice</button>
 
 ``` js
 this.$dialog.dialog({

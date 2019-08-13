@@ -32,7 +32,7 @@ wait    | function | null | 支持异步式调用 传入next参数 并在函数�
 
 ## 基础用法
 
-<button onclick="dialogX.confirm({message: '请登陆后再试', okText: '去登陆'})">confirm</button>
+<button class="button" onclick="dialogX.confirm({message: '请登陆后再试', okText: '去登陆'})">confirm</button>
 
 ``` js
 
@@ -48,7 +48,7 @@ await this.$dialog.confirm({
 
 ## 异步关闭用法
 
-<button onclick="buy()">异步关闭</button>
+<button class="button" onclick="buy()">异步关闭</button>
 
 ``` js
 async () => {

@@ -5,11 +5,11 @@
   "scripts": {
     "test": "cross-env BABEL_ENV=test karma start ./test/unit/karma.conf.js",
     "build": "webpack --config build/webpack.build.config.js",
-    "build-window": "webpack --config build/webpack.build.window.config.js",
+    "build:window": "webpack --config build/webpack.build.window.config.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.config.js",
-    "demo-build": "webpack --config build/webpack.demo.build.config.js",
-    "release": "npm run test && npm run build && npm run build-window && npm run demo-build && git add . && git commit . -m '发布新版本' && git push && npm publish",
-    "publish-demo": "npm run demo-build && git add . && git commit . -m '更新官网' && git push",
+    "build:demo": "webpack --config build/webpack.demo.build.config.js",
+    "release": "npm run test && npm run build && npm run docs:build && npm run build:window && npm run build:demo && git add . && git commit . -m '发布新版本' && git push && npm publish",
+    "publish:demo": "npm run build:demo && git add . && git commit . -m '更新官网' && git push",
     "precommit": "npm run test",
     "docs:dev": "vuepress dev docs/",
     "docs:build": "vuepress build docs/"

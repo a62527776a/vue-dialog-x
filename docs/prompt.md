@@ -50,7 +50,7 @@ fieldMessageError | function | null | 非必填，如果fieldMessageTest函数�
 
 ## 基础用法
 
-<button onclick="normal()">normal</button>
+<button class="button" onclick="normal()">normal</button>
 
 ``` js
 async () => {
@@ -69,7 +69,7 @@ async () => {
 也可以全部填写，文档展示的是全部填写的情况
 :::
 
-<button onclick="inputUserName()">校验文本域</button>
+<button class="button" onclick="inputUserName()">校验文本域</button>
 
 ``` js
 async () => {

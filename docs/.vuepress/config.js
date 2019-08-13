@@ -12,6 +12,8 @@ module.exports = {
   ],
   dest: 'docs/vuepress/',
   themeConfig: {
+    repo: 'a62527776a/vue-dialog-x',
+    repoLabel: 'Github',
     sidebarDepth: 2,
     sidebar: [
       '/',
