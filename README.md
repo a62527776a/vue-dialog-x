@@ -26,27 +26,30 @@
 
 面向开发者，我们提供了完善的类型推导文件(d.ts)。使其在开发过程中拥有能够更好的体验。由于是基于Typescript开发的，我们的组件对Typescript项目拥有完全的亲和力。
 
-## Features
-
-**丰富的弹窗类型**
-
-**完善的类型推导**
-
-**基于Promise**
-
-**优雅的异步关闭**
-
-**经典的iOS设计风格**
-
-**支持渲染html**
-
-**支持script标签引入**
-
+## Links
 
 [Live demo](https://a62527776a.github.io/vue-dialog-x/) 
 
 [Homepage and documentation](https://a62527776a.github.io/vue-dialog-x/vuepress/)
 
+
+## Features
+
+- 丰富的弹窗类型
+
+- 完善的类型推导
+
+- 基于Promise
+
+- 优雅的异步关闭
+
+- 经典的iOS设计风格
+
+- 支持渲染html
+
+- 支持script标签引入
+
+## 演示
 
 ![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
 ![8.gif](http://ued.rr.tv/0.3367761200861381%E5%BC%82%E6%AD%A5%E5%85%B3%E9%97%AD.gif)
