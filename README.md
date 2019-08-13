@@ -14,15 +14,16 @@
 
 ##### 支持Promise的iOS样式风格的弹窗提示
 
+
+[Live demo](https://a62527776a.github.io/vue-dialog-x/)
+[Homepage and documentation](https://a62527776a.github.io/vue-dialog-x/vuepress/)
+
+
 ![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
 ![8.gif](http://ued.rr.tv/0.3367761200861381%E5%BC%82%E6%AD%A5%E5%85%B3%E9%97%AD.gif)
 ![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
 ![8.gif](http://ued.rr.tv/0.25007438216585354actionswait.gif)
 ![弹窗图示](https://upload-images.jianshu.io/upload_images/5738345-0b61e6d1d6a27605.gif?imageMogr2/auto-orient/strip)
-
-**[live demo](https://a62527776a.github.io/vue-dialog-x/)**  
-**[api doc](https://a62527776a.github.io/vue-dialog-x/vuepress/)**
-
 
 ## 它能做什么
 
