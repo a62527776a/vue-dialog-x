@@ -225,6 +225,8 @@ export default class VueDialogXComponent extends Vue {
   background: $pannelColor
   font-size: 17px
   user-select: none
+  a
+   color: $btnColor
 .dialog-x-cell
   position: relative;
   height: 44px;

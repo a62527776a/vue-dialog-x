@@ -11,7 +11,7 @@ interface OpenOpt extends GlobalOptions {
   reject?: Function
 }
 
-class VueDialogX {
+export class VueDialogX {
   Vue: any
   $root: VueDialogXComponentObject
   globalOptions: GlobalOptions
