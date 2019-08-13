@@ -8,7 +8,7 @@ const webpackConfig = {
     main: path.join(__dirname, '../demo/main.js')
   },
   output: {
-    path: path.join(__dirname, '../docs'),
+    path: path.join(__dirname, '../docs/demo'),
     filename: 'vue-dialog-x.js'
   },
   plugins: [
