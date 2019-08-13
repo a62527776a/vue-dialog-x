@@ -1,5 +1,16 @@
 # 介绍
 
+<a href="https://travis-ci.org/a62527776a/vue-dialog-x">
+  <img src="https://travis-ci.org/a62527776a/vue-dialog-x.svg?branch=master">
+</a>
+<a href='https://coveralls.io/github/a62527776a/vue-dialog-x?branch=master'><img src='https://coveralls.io/repos/github/a62527776a/vue-dialog-x/badge.svg?branch=master' alt='Coverage Status' /></a>
+<a href="https://www.npmjs.com/package/vue-dialog-x"><img src="https://img.shields.io/npm/dm/vue-dialog-x.svg" /></a>
+<br>
+</a>
+<img alt="npm type definitions" src="https://img.shields.io/npm/types/vue-dialog-x">
+<img alt="npm" src="https://img.shields.io/npm/v/vue-dialog-x">
+
+
 **VueDialogX**的孵化是由于作者在工作性质决定的。
 作者在日常的工作中，经常接到各种各样简单的H5页面需求，活动页需求
 

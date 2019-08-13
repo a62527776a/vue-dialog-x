@@ -9,6 +9,7 @@ module.exports = {
       src: 'https://unpkg.com/vue-dialog-x/dist/vue-dialog-x.window.js'
     }]
   ],
+  dest: 'docs/vuepress/',
   themeConfig: {
     sidebarDepth: 2,
     sidebar: [
@@ -18,7 +19,8 @@ module.exports = {
       ['/alert', 'Alert'],
       ['/confirm', 'Confirm'],
       ['/prompt', 'Prompt'],
-      ['/actions', 'Actions']
+      ['/actions', 'Actions'],
+      ['/dialog', 'Dialog']
     ]
   }
 }

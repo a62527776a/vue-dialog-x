@@ -96,9 +96,9 @@ async () => {
 ```
 
 
-## 异步调用
+## 异步关闭
 
-<button onclick="waitSelect()">异步调用</button>
+<button onclick="waitSelect()">异步关闭</button>
 
 
 ``` js

@@ -25,3 +25,9 @@ html    | string | ''      | 可以传入html片段
 ## 基础用法
 
 <button onclick="notice()">notice</button>
+
+``` js
+this.$dialog.dialog({
+  html: '<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />'
+})
+```

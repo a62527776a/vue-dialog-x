@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hello VueDialogX</title>
+    <meta name="description" content="好用的iOS风格弹窗组件">
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-dialog-x/dist/vue-dialog-x.window.js"></script>
+    
+    <link rel="preload" href="/assets/css/0.styles.5e348929.css" as="style"><link rel="preload" href="/assets/js/app.24e5da25.js" as="script"><link rel="preload" href="/assets/js/2.75490e8e.js" as="script"><link rel="preload" href="/assets/js/4.b75981e9.js" as="script"><link rel="prefetch" href="/assets/js/10.e59983b4.js"><link rel="prefetch" href="/assets/js/11.ad71a9c0.js"><link rel="prefetch" href="/assets/js/12.f6bcb9b2.js"><link rel="prefetch" href="/assets/js/13.df47a330.js"><link rel="prefetch" href="/assets/js/3.3e543ece.js"><link rel="prefetch" href="/assets/js/5.a758d3c4.js"><link rel="prefetch" href="/assets/js/6.8d5e3235.js"><link rel="prefetch" href="/assets/js/7.886fb330.js"><link rel="prefetch" href="/assets/js/8.4dd14e4c.js"><link rel="prefetch" href="/assets/js/9.77d82f5c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.5e348929.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Hello VueDialogX</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">介绍</a></li><li><a href="/getting-started.html" class="sidebar-link">起步</a></li><li><a href="/basic.html" class="sidebar-link">基础使用</a></li><li><a href="/alert.html" class="sidebar-link">Alert</a></li><li><a href="/confirm.html" class="active sidebar-link">Confirm</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/confirm.html#配置项" class="sidebar-link">配置项</a></li><li class="sidebar-sub-header"><a href="/confirm.html#基础用法" class="sidebar-link">基础用法</a></li><li class="sidebar-sub-header"><a href="/confirm.html#异步关闭用法" class="sidebar-link">异步关闭用法</a></li></ul></li><li><a href="/prompt.html" class="sidebar-link">Prompt</a></li><li><a href="/actions.html" class="sidebar-link">Actions</a></li><li><a href="/dialog.html" class="sidebar-link">Dialog</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="confirm"><a href="#confirm" aria-hidden="true" class="header-anchor">#</a> Confirm</h1> <p>返回Promise</p> <h2 id="配置项"><a href="#配置项" aria-hidden="true" class="header-anchor">#</a> 配置项</h2> <table><thead><tr><th>param</th> <th>type</th> <th>default</th> <th>desc</th></tr></thead> <tbody><tr><td>title</td> <td>string</td> <td>'提示'</td> <td></td></tr> <tr><td>message</td> <td>string</td> <td>''</td> <td></td></tr> <tr><td>okText</td> <td>string</td> <td>'确定'</td> <td></td></tr> <tr><td>cancelText</td> <td>string</td> <td>'取消'</td> <td></td></tr> <tr><td>html</td> <td>string</td> <td>''</td> <td>可以传入html片段 如若传入，将替换掉message内容</td></tr> <tr><td>wait</td> <td>function</td> <td>null</td> <td>支持异步式调用 传入next参数 并在函数体中调用next()即可实现异步式调用 效果与alert wait 类似 但是一旦进入加载状态 将隐藏取消按钮 点击确认才会调用wait</td></tr></tbody></table> <h2 id="基础用法"><a href="#基础用法" aria-hidden="true" class="header-anchor">#</a> 基础用法</h2> <p><button onclick="dialogX.confirm({message: '请登陆后再试', okText: '去登陆'})">confirm</button></p> <div class="language-js extra-class"><pre class="language-js"><code>
+<span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$dialog<span class="token punctuation">.</span><span class="token function">confirm</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  title<span class="token punctuation">:</span> <span class="token string">'提示'</span><span class="token punctuation">,</span>
+  message<span class="token punctuation">:</span> <span class="token string">'请登陆后再试'</span><span class="token punctuation">,</span>
+  okText<span class="token punctuation">:</span> <span class="token string">'去登陆'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// do someting...</span>
+
+</code></pre></div><h2 id="异步关闭用法"><a href="#异步关闭用法" aria-hidden="true" class="header-anchor">#</a> 异步关闭用法</h2> <p><button onclick="buy()">异步关闭</button></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> dialogX<span class="token punctuation">.</span><span class="token function">confirm</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    message<span class="token punctuation">:</span> <span class="token string">'点击确认后购买'</span><span class="token punctuation">,</span> 
+    <span class="token function-variable function">wait</span><span class="token punctuation">:</span> <span class="token keyword">async</span> <span class="token parameter">next</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'xxx'</span><span class="token punctuation">)</span>
+      <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  dialogX<span class="token punctuation">.</span><span class="token function">alert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">:</span> <span class="token string">'购买成功'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/alert.html" class="prev">
+          Alert
+        </a></span> <span class="next"><a href="/prompt.html">
+          Prompt
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.24e5da25.js" defer></script><script src="/assets/js/2.75490e8e.js" defer></script><script src="/assets/js/4.b75981e9.js" defer></script>
+  </body>
+</html>
