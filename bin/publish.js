@@ -1,6 +1,6 @@
 var exec = require('child_process').execSync
 
-var str = exec(`scp -r ./docs/vuepress/ root@${process.env.host}:/data/wwwroot/vue-dialog-x/homepage`)
+var str = exec(`scp -r ./docs/vuepress/ root@${process.env.host}:/data/wwwroot/vue-dialog-x/vuepress`)
 
 console.log(str.toString("utf8").trim());
 
