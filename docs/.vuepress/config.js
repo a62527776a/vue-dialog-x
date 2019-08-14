@@ -11,6 +11,7 @@ module.exports = {
     }]
   ],
   dest: 'docs/vuepress/',
+  ga: 'UA-145663310-1',
   themeConfig: {
     repo: 'a62527776a/vue-dialog-x',
     repoLabel: 'Github',
