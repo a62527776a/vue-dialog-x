@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/vue-dialog-x/vuepress/',
+  base: '/vue-dialog-x/homepage/',
   title: 'Hello VueDialogX',
   description: '好用的iOS风格弹窗组件',
   head: [

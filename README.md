@@ -28,9 +28,9 @@
 
 ## Links
 
-[Live demo](https://a62527776a.github.io/vue-dialog-x/demo/index.html)
+[Live demo](http://dscsdoj.top/vue-dialog-x/docs/demo/index.html)
 
-[Homepage and documentation](https://a62527776a.github.io/vue-dialog-x/vuepress/)
+[Homepage and documentation](http://dscsdoj.top/vue-dialog-x/homepage/index.html)
 
 
 ## Features
