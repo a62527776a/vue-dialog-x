@@ -10,7 +10,7 @@ module.exports = {
       src: 'https://unpkg.com/vue-dialog-x/dist/vue-dialog-x.window.js'
     }]
   ],
-  dest: '/vue-dialog-x/homepage/',
+  dest: 'docs/vuepress/',
   plugins: [
     ['@vuepress/google-analytics', {
       ga: 'UA-145663310-1'
