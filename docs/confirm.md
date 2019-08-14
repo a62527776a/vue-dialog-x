@@ -6,6 +6,10 @@ export default {
     }
   },
   mounted () {
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6177820902567416",
+      enable_page_level_ads: true
+    });
     window.dialogX = new window.VueDialogX(window.Vue)
     window.buy = async () => {
       await dialogX.confirm({message: '点击确认后购买', wait: next => setTimeout(() => next(), 1500)})

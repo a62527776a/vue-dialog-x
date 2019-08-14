@@ -8,6 +8,9 @@ module.exports = {
     }],
     ['script', {
       src: 'https://unpkg.com/vue-dialog-x/dist/vue-dialog-x.window.js'
+    }],
+    ['script', {
+      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
     }]
   ],
   dest: 'docs/vuepress/',

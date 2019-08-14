@@ -6,6 +6,10 @@ export default {
     }
   },
   mounted () {
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6177820902567416",
+      enable_page_level_ads: true
+    });
     window.dialogX = new window.VueDialogX(window.Vue)
     window.notice = () => {
       dialogX.dialog({html: '<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />'})

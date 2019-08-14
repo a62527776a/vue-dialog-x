@@ -1,3 +1,13 @@
+<script>
+export default {
+  mounted () {
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6177820902567416",
+      enable_page_level_ads: true
+    });
+  }
+}
+</script>
 # 介绍
 
 <a href="https://travis-ci.org/a62527776a/vue-dialog-x">

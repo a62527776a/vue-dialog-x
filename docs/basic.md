@@ -1,6 +1,10 @@
 <script>
 export default {
   mounted () {
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6177820902567416",
+      enable_page_level_ads: true
+    });
     let dialogX = new window.VueDialogX(window.Vue)
     window.dialogX = dialogX
   }
