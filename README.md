@@ -30,7 +30,7 @@
 
 [Live demo](http://dscsdoj.top/vue-dialog-x/docs/demo/index.html)
 
-[Homepage and documentation](http://dscsdoj.top/vue-dialog-x/homepage/index.html)
+[Homepage and documentation](http://dscsdoj.top/vue-dialog-x/vuepress/index.html)
 
 
 ## Features
