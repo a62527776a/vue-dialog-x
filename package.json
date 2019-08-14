@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.4.4",
+    "@vuepress/plugin-google-analytics": "^1.0.0-rc.1",
     "autoprefixer": "^9.6.1",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
