@@ -1,10 +1,46 @@
 <script>
 export default {
+  data () {
+    return {
+      dialogX: null
+    }
+  },
+  methods: {
+    dialogXFn (type) {
+      if (type === 'dialog') {
+        this.dialogX[type]({
+          html: '<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />'
+        })
+      } else if (type === 'actions') {
+        this.dialogX[type]({
+          actions: [
+            {
+              okText: '王者荣耀'
+            },
+            {
+              okText: 'DotA 2'
+            },
+            {
+              okText: 'Bilibili'
+            },
+            {
+              okText: '爱奇艺'
+            }
+          ]
+        })
+      } else {
+        this.dialogX[type]({
+          message: 'hello，DialogX'
+        })
+      }
+    }
+  },
   mounted () {
     (adsbygoogle = window.adsbygoogle || []).push({
       google_ad_client: "ca-pub-6177820902567416",
       enable_page_level_ads: true
     });
+    this.dialogX = new window.VueDialogX(window.Vue)
   }
 }
 </script>
@@ -27,6 +63,14 @@ export default {
 这些需求有着共同的一点，就是业务不算复杂，对于组件库中大量的组件无需用到
 
 仅对Dialog、Toast有着高频需求。所以在开发时，pass掉组件库。希望有一个好用，美观，且满足需求的弹窗库。**VueDialogX**便孵化出来了。
+
+<template>
+<button class="button" @click="dialogXFn('alert')">点我试试 Alert</button>
+<button class="button" @click="dialogXFn('confirm')">点我试试 Confirm</button>
+<button class="button" @click="dialogXFn('prompt')">点我试试 Prompt</button><br />
+<button class="button" @click="dialogXFn('actions')">点我试试 actions</button>
+<button class="button" @click="dialogXFn('dialog')">点我试试 Dialog</button>
+</template>
 
 ## 它能做什么
 
