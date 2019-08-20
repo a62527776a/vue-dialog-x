@@ -24,8 +24,8 @@ module.exports = {
     repoLabel: 'Github',
     sidebarDepth: 2,
     sidebar: [
-      '/',
-      '/getting-started',
+      ['/', '介绍'],
+      ['/getting-started', 'QuickStart'],
       ['/basic', '基础使用'],
       ['/alert', 'Alert'],
       ['/confirm', 'Confirm'],

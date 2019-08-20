@@ -5,14 +5,13 @@ export default {
       dialogX: null
     }
   },
-  mounted () {
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-6177820902567416",
-      enable_page_level_ads: true
-    });
-    window.dialogX = new window.VueDialogX(window.Vue)
-    window.notice = () => {
-      dialogX.dialog({html: '<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />'})
+  methods: {
+    notice () {
+      if (!this.dialogX) this.createDialog()
+      this.dialogX.dialog({html: '<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />'})
+    },
+    createDialog () {
+      this.dialogX = new window.VueDialogX(window.Vue)
     }
   }
 }
@@ -28,7 +27,9 @@ html    | string | ''      | 可以传入html片段
 
 ## 基础用法
 
-<button class="button" onclick="notice()">notice</button>
+<template>
+<button class="button" @click="notice">notice</button>
+</template>
 
 ``` js
 this.$dialog.dialog({
