@@ -28,9 +28,9 @@
 
 ## Links
 
-[Live demo](http://dscsdoj.top/vue-dialog-x/docs/demo/index.html)
+[Live demo](http://vue-dialog-x.dscsdoj.top/)
 
-[Homepage and documentation](http://dscsdoj.top/vue-dialog-x/vuepress/index.html)
+[Homepage and documentation](http://dscsdoj.top/)
 
 
 ## Features
