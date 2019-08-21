@@ -6,7 +6,11 @@ export default {
     }
   },
   methods: {
+    createDialog () {
+      this.dialogX = new window.VueDialogX(window.Vue)
+    },
     dialogXFn (type) {
+      if (!this.dialogX) this.createDialog()
       if (type === 'dialog') {
         this.dialogX[type]({
           html: '<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />'
