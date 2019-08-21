@@ -31,7 +31,8 @@ module.exports = {
       ['/confirm', 'Confirm'],
       ['/prompt', 'Prompt'],
       ['/actions', 'Actions'],
-      ['/dialog', 'Dialog']
+      ['/dialog', 'Dialog'],
+      ['/vnode', '渲染VNode']
     ]
   }
 }
