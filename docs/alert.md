@@ -1,12 +1,24 @@
 <script>
 export default {
+  data () {
+    return {
+      dialogX: null
+    }
+  },
+  methods: {
+    createDialog () {
+      this.dialogX = new window.VueDialogX(window.Vue)
+    },
+    alert () {
+      if (!this.dialogX) this.createDialog()
+      this.dialogX.alert({message: '普通弹窗'})
+    },
+    syncAlert () {
+      if (!this.dialogX) this.createDialog()
+      this.dialogX.alert({message: '异步关闭的弹窗', wait: next => setTimeout(() => next(), 1500) })
+    }
+  },
   mounted () {
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-6177820902567416",
-      enable_page_level_ads: true
-    });
-    let dialogX = new window.VueDialogX(window.Vue)
-    window.dialogX = dialogX
   }
 }
 </script>
@@ -27,7 +39,9 @@ wait    | function | null | 支持异步式调用 传入next参数 并在函数�
 
 ## 基础用法
 
-<button class="button" onclick="window.dialogX.alert({message: '普通弹窗'})">example</button>
+<template>
+<button class="button" @click="alert">example</button>
+</template>
 
 ``` js
 this.$dialog.alert({
@@ -37,7 +51,9 @@ this.$dialog.alert({
 ```
 ## 异步关闭用法
 
-<button class="button" onclick="window.dialogX.alert({message: '异步关闭的弹窗', wait: next => setTimeout(() => next(), 1500) })">异步关闭</button>
+<template>
+<button class="button" @click="syncAlert">异步关闭</button>
+</template>
 
 ``` js
 this.$dialog.alert({

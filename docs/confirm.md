@@ -5,16 +5,21 @@ export default {
       dialogX: null
     }
   },
-  mounted () {
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-6177820902567416",
-      enable_page_level_ads: true
-    });
-    window.dialogX = new window.VueDialogX(window.Vue)
-    window.buy = async () => {
-      await dialogX.confirm({message: '点击确认后购买', wait: next => setTimeout(() => next(), 1500)})
-      dialogX.alert({message: '购买成功'})
+  methods: {
+    createDialog () {
+      this.dialogX = new window.VueDialogX(window.Vue)
+    },
+    async buy () {
+      if (!this.dialogX) this.createDialog()
+      await this.dialogX.confirm({message: '点击确认后购买', wait: next => setTimeout(() => next(), 1500)})
+      this.dialogX.alert({message: '购买成功'})
+    },
+    confirm () {
+      if (!this.dialogX) this.createDialog()
+      this.dialogX.confirm({message: '请登陆后再试', okText: '去登陆'})
     }
+  },
+  mounted () {
   }
 }
 </script>
@@ -36,7 +41,9 @@ wait    | function | null | 支持异步式调用 传入next参数 并在函数�
 
 ## 基础用法
 
-<button class="button" onclick="dialogX.confirm({message: '请登陆后再试', okText: '去登陆'})">confirm</button>
+<template>
+<button class="button" @click="confirm">confirm</button>
+</template>
 
 ``` js
 
@@ -52,7 +59,9 @@ await this.$dialog.confirm({
 
 ## 异步关闭用法
 
-<button class="button" onclick="buy()">异步关闭</button>
+<template>
+<button class="button" @click="buy">异步关闭</button>
+</template>
 
 ``` js
 async () => {

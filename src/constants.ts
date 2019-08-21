@@ -10,6 +10,7 @@ export interface GlobalOptions {
   cancelText: string
   html?: string
   actions?: null | Array<Action>
+  vnode?: any
 }
 
 export enum DIALOG_TYPES {

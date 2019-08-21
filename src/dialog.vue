@@ -11,9 +11,11 @@
       key="dialogXPannel")
       .dialog-x-inner(:class="{ 'dialog-x-radius' : showDialog }")
         .dialog-x-title(v-if="!showDialog") {{title}}
-        .dialog-x-message(v-if="!html") {{message}}
-        .dialog-x-message(v-else
+        .dialog-x-message(v-if="!html && !$slots.default") {{message}}
+        .dialog-x-message(v-if="html"
           v-html="html")
+        .dialog-x-message(v-if="$slots.default")
+          slot
         input.dialog-x-field(
           v-if="showField"
           v-model="fieldMessage")
@@ -68,6 +70,7 @@ export default class VueDialogXComponent extends Vue {
   selectActionIdx: null | number = null
   fieldMessageError: null | Function = null
   actions: Array<Action> | null
+  vnode: any = null
 
   get showCancel (): boolean {
     return this.dialogType !== DIALOG_TYPES.ALERT
@@ -89,6 +92,9 @@ export default class VueDialogXComponent extends Vue {
     let _data = Object.assign(this.$data, options)
     for (let key in _data) {
       this[key] = _data[key]
+    }
+    if (_data.vnode) {
+      this.syncSlots()
     }
   }
 
@@ -143,6 +149,10 @@ export default class VueDialogXComponent extends Vue {
     if (!this.show) {
       this.$emit('confirm')
     }
+  }
+
+  syncSlots () {
+    this.$slots.default = this.vnode
   }
 
   mounted () {

@@ -1,47 +1,53 @@
 <script>
 export default {
-  mounted () {
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-6177820902567416",
-      enable_page_level_ads: true
-    });
-    let dialogX = new window.VueDialogX(window.Vue)
-    window.dialogX = dialogX
-    const list = [
-      {
-        okText: '你妈妈喊你回家吃饭'
-      },
-      {
-        okText: 'skr~skr~'
-      },
-      {
-        okText: '我觉得还行'
-      },
-      {
-        okText: '我觉得ok'
-      }
-    ]
-    window.select = async () => {
-      let result = await dialogX.actions({
-        actions: list
+  data () {
+    return {
+      dialogX: null,
+      list: [
+        {
+          okText: '你妈妈喊你回家吃饭'
+        },
+        {
+          okText: 'skr~skr~'
+        },
+        {
+          okText: '我觉得还行'
+        },
+        {
+          okText: '我觉得ok'
+        }
+      ]
+    }
+  },
+  methods: {
+    createDialog () {
+      this.dialogX = new window.VueDialogX(window.Vue)
+    },
+    async select () {
+      if (!this.dialogX) this.createDialog()
+      let result = await this.dialogX.actions({
+        actions: this.list
       })
       dialogX.alert({
-        message: `选择了${list[result].okText}选项`
+        message: `选择了${this.list[result].okText}选项`
       })
-    }
-    window.waitSelect = async () => {
-      let result = await dialogX.actions({
-        actions: list,
+    },
+    async waitSelect () {
+      let result = await this.dialogX.actions({
+        actions: this.list,
         wait: (next) => {
           setTimeout(() => {
             next()
           }, 500)
         }
       })
-      dialogX.alert({
-        message: `选择了${list[result].okText}选项`
+      this.dialogX.alert({
+        message: `选择了${this.list[result].okText}选项`
       })
     }
+  },
+  mounted () {
+    
   }
 }
 </script>
@@ -86,7 +92,9 @@ const exampleActions = [
 
 ## 基础用法
 
-<button class="button" onclick="select()">多选项</button>
+<tempalte>
+<button class="button" @click="select">多选项</button>
+</tempalte>
 
 ``` js
 async () => {
@@ -102,8 +110,9 @@ async () => {
 
 ## 异步关闭
 
-<button class="button" onclick="waitSelect()">异步关闭</button>
-
+<tempalte>
+<button class="button" @click="waitSelect">异步关闭</button>
+</tempalte>
 
 ``` js
 async () => {

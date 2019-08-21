@@ -40,11 +40,12 @@
         <textarea v-model="htmlString"></textarea>
       </li>
       <li><a class="alert-btn" @click="handleImgHTMLDialog" rel="noopener">自定义HTML（图片）</a></li><br /><br />
+      <li><a class="alert-btn" @click="renderVNode" rel="noopener">渲染VNode</a></li><br /><br />
     </ul>
     <h3>Essential Links</h3>
     <ul>
       <li><a class="alert-btn" href="https://github.com/a62527776a/vue-dialog-x" target="_blank" rel="noopener">Github</a></li>
-      <li><a class="alert-btn" href="https://a62527776a.github.io/vue-dialog-x/vuepress/" target="_blank" rel="noopener">官网 && Apidoc</a></li>
+      <li><a class="alert-btn" href="http://dscsdoj.top/" target="_blank" rel="noopener">官网 && Apidoc</a></li>
     </ul>
     <!-- <h3>Ecosystem</h3>
     <ul>
@@ -87,6 +88,20 @@ export default {
       this.$dialog.alert({
         title: '',
         message: '这是一个没有title的弹窗'
+      })
+    },
+    renderVNode () {
+      let customEl = this.$createElement('h1', {
+        style: {
+          color: 'red',
+          fontSize: '22px'
+        },
+        on: {
+          click: this.handleDialogDialog
+        }
+      }, '我是VNode，点我触发事件')
+      this.$dialog.alert({
+        vnode: customEl
       })
     },
     handleImgHTMLDialog () {

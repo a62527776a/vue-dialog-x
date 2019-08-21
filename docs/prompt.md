@@ -5,18 +5,18 @@ export default {
       dialogX: null
     }
   },
-  mounted () {
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-6177820902567416",
-      enable_page_level_ads: true
-    });
-    window.dialogX = new window.VueDialogX(window.Vue)
-    window.normal = async () => {
-      let res = await dialogX.prompt({message: '请输入地址'})
-      dialogX.alert({message: res ? `您输入了 ${res}` : '您什么也没有输入'})
-    }
-    window.inputUserName = async () => {
-      let res = await dialogX.prompt({
+  methods: {
+    createDialog () {
+      this.dialogX = new window.VueDialogX(window.Vue)
+    },
+    async normal () {
+      if (!this.dialogX) this.createDialog()
+      let res = await this.dialogX.prompt({message: '请输入地址'})
+      this.dialogX.alert({message: res ? `您输入了 ${res}` : '您什么也没有输入'})
+    },
+    async inputUserName () {
+      if (!this.dialogX) this.createDialog()
+      let res = await this.dialogX.prompt({
         message: '请输入用户名',
         fieldMessageTest: fieldMessage => {
           return fieldMessage
@@ -32,8 +32,10 @@ export default {
           }, 500)
         }
       })
-      dialogX.alert({message: '您的信息已提交'})
+      this.dialogX.alert({message: '您的信息已提交'})
     }
+  },
+  mounted () {
   }
 }
 </script>
@@ -54,7 +56,9 @@ fieldMessageError | function | null | 非必填，如果fieldMessageTest函数�
 
 ## 基础用法
 
-<button class="button" onclick="normal()">normal</button>
+<template>
+<button class="button" @click="normal">normal</button>
+</template>
 
 ``` js
 async () => {
@@ -73,7 +77,9 @@ async () => {
 也可以全部填写，文档展示的是全部填写的情况
 :::
 
-<button class="button" onclick="inputUserName()">校验文本域</button>
+<template>
+<button class="button" @click="inputUserName">校验文本域</button>
+</template>
 
 ``` js
 async () => {

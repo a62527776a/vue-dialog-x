@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/vue-dialog-x/vuepress/',
+  base: '/',
   title: 'Hello VueDialogX',
   description: '好用的iOS风格弹窗组件',
   head: [
@@ -25,13 +25,14 @@ module.exports = {
     sidebarDepth: 2,
     sidebar: [
       ['/', '介绍'],
-      ['/getting-started', 'Quickstart'],
+      ['/getting-started', 'QuickStart'],
       ['/basic', '基础使用'],
       ['/alert', 'Alert'],
       ['/confirm', 'Confirm'],
       ['/prompt', 'Prompt'],
       ['/actions', 'Actions'],
-      ['/dialog', 'Dialog']
+      ['/dialog', 'Dialog'],
+      ['/vnode', '渲染VNode']
     ]
   }
 }
