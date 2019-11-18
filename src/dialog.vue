@@ -11,7 +11,7 @@
       key="dialogXPannel")
       .dialog-x-inner(:class="{ 'dialog-x-radius' : showDialog }")
         .dialog-x-title(v-if="!showDialog") {{title}}
-        .dialog-x-message(v-if="!html && !$slots.default") {{message}}
+        .dialog-x-message(v-if="!html && !$slots.default && (message || !showActions)") {{message}}
         .dialog-x-message(v-if="html"
           v-html="html")
         .dialog-x-message(v-if="$slots.default")

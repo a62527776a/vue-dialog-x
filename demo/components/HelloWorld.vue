@@ -18,8 +18,10 @@
     <ul>
       <li><a class="alert-btn" @click="handleDialog('alert')" rel="noopener">Alert</a></li>
       <li><a class="alert-btn" @click="handleDialog('confirm')" rel="noopener">Confirm</a></li>
+      <li><a class="alert-btn" @click="handleDialog2('confirm')" rel="noopener">Confirm (no message)</a></li>
       <li><a class="alert-btn" @click="handleDialog('prompt')" rel="noopener">Prompt</a></li>
       <li><a class="alert-btn" @click="handleActionsDialog" rel="noopener">Actions</a></li>
+      <li><a class="alert-btn" @click="handleActionsDialog2" rel="noopener">Actions (no message)</a></li>
       <li><a class="alert-btn" @click="handleDialogDialog" rel="noopener">Dialog</a></li>
     </ul>
     <h3>异步关闭</h3>
@@ -67,6 +69,17 @@ export default {
     }
   },
   methods: {
+    async handleDialog2 (type) {
+      let a = await this.$dialog[type]({
+        title: `我是一个${type}弹窗`
+      })
+      if (typeof a === 'string') {
+        this.$dialog.alert({
+          title: '提示',
+          message: `您输入了：${a}`
+        })
+      }
+    },
     async handleDialog (type) {
       let a = await this.$dialog[type]({
         title: '提示',
@@ -169,6 +182,28 @@ export default {
     handleDialogDialog () {
       this.$dialog.dialog({
         html: `<img src="//pt-starimg.didistatic.com/static/starimg/img/XEowm9ygfF1544626192687.png" />`
+      })
+    },
+    async handleActionsDialog2 () {
+      let result = await this.$dialog.actions({
+        title: '多选项卡',
+        actions: [
+          {
+            okText: '操作1'
+          },
+          {
+            okText: '操作2'
+          },
+          {
+            okText: '操作3'
+          },
+          {
+            okText: '操作4'
+          }
+        ]
+      })
+      this.$dialog.alert({
+        message: '点击了第' + (result + 1) + '个按钮'
       })
     },
     async handleActionsDialog () {
