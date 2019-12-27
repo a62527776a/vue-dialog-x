@@ -13,6 +13,10 @@ export default {
       if (!this.dialogX) this.createDialog()
       this.dialogX.alert({message: '普通弹窗'})
     },
+    alertNoMessage () {
+      if (!this.dialogX) this.createDialog()
+      this.dialogX.alert({title: '没有message'})
+    },
     syncAlert () {
       if (!this.dialogX) this.createDialog()
       this.dialogX.alert({message: '异步关闭的弹窗', wait: next => setTimeout(() => next(), 1500) })
@@ -41,6 +45,7 @@ wait    | function | null | 支持异步式调用 传入next参数 并在函数�
 
 <template>
 <button class="button" @click="alert">example</button>
+<button class="button" @click="alertNoMessage">没有message</button>
 </template>
 
 ``` js
