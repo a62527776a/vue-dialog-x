@@ -28,8 +28,6 @@
 
 ## Links
 
-[Live demo](http://vue-dialog-x.dscsdoj.top/)
-
 [Homepage and documentation](http://vue-dialog-x-doc.dscsdoj.top)
 
 
