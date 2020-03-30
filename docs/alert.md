@@ -20,6 +20,16 @@ export default {
     syncAlert () {
       if (!this.dialogX) this.createDialog()
       this.dialogX.alert({message: '异步关闭的弹窗', wait: next => setTimeout(() => next(), 1500) })
+    },
+    syncAlertFail () {
+      if (!this.dialogX) this.createDialog()
+      this.dialogX.alert({message: '异步关闭的弹窗', wait: next => {
+        setTimeout(async () => {
+          await this.dialogX.alert({message: '请求失败'})
+          this.syncAlertFail()
+          next()
+        }, 500)
+      }})
     }
   },
   mounted () {
@@ -58,6 +68,7 @@ this.$dialog.alert({
 
 <template>
 <button class="button" @click="syncAlert">异步关闭</button>
+<button class="button" @click="syncAlertFail">异步关闭失败</button>
 </template>
 
 ``` js
@@ -68,6 +79,23 @@ this.$dialog.alert({
     next() // 请求结束后将结束loading状态
   }
 })
+
+// 请求失败实例
+export default {
+  methods: {
+    async syncAlertFail () {
+      this.dialogX.alert({message: '异步关闭的弹窗', wait: next => {
+        let res = await request()
+        // 请求失败的话 重新调用一遍自身就可以
+        if (res.code !== 200) {
+          await this.dialogX.alert({message: '请求失败'})
+          this.syncAlertFail()
+        }
+        next()
+      }})
+    }
+  }
+}
 ```
 <!-- <button onclick="window.dialogX.alert({html: '<p>渲染p标签</p>'})">渲染html</button>
 

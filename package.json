@@ -14,6 +14,7 @@
     "docs:build": "vuepress build docs/"
   },
   "dependencies": {
+    "@vuepress/shared-utils": "^1.4.0",
     "vue-class-component": "^7.1.0",
     "vue-property-decorator": "^8.2.1"
   },
@@ -43,7 +44,7 @@
     "eslint-plugin-html": "^4.0.2",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^3.0.1",
     "git-pre-commit": "^2.1.4",
     "html-webpack-plugin": "^3.2.0",
@@ -66,10 +67,10 @@
     "transform-runtime": "^0.0.0",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
-    "vue": "^2.6.10",
+    "vue": "^2.6.11",
     "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.5.13",
+    "vue-template-compiler": "^2.6.11",
     "vue-test-utils": "^1.0.0-beta.11",
     "vuepress": "^1.0.3",
     "webpack": "^4.32.0",

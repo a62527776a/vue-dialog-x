@@ -64,14 +64,22 @@ await this.$dialog.confirm({
 </template>
 
 ``` js
-async () => {
-  await dialogX.confirm({
-    message: '点击确认后购买', 
-    wait: async next => {
-      await fetch('xxx')
-      next()
+export default {
+  methods: {
+    confirm: async () => {
+      await dialogX.confirm({
+        message: '点击确认后购买', 
+        wait: async next => {
+          let res = await fetch('xxx')
+          if (res.code !== 200) {
+            await dialogX.alert({message: '请求失败'})
+            this.confirm()
+          }
+          dialogX.alert({message: '购买成功'})
+          next()
+        }
+      })
     }
-  })
-  dialogX.alert({message: '购买成功'})
+  }
 }
 ```

@@ -31,9 +31,13 @@
       <li><a class="alert-btn" @click="handleWaitActionsDialog" rel="noopener">异步关闭(actions)</a></li>
       <li><a class="alert-btn" @click="handleWaitPromptDialog" rel="noopener">异步关闭(prompt)</a></li>
     </ul>
-    <h3>文本域检查</h3>
+    <h3>文本域检查 && 异步请求</h3>
     <ul>
       <li><a class="alert-btn" @click="handleWaitPromptDialog" rel="noopener">文本域检查(prompt)</a></li>
+    </ul>
+    <h3>文本域检查 && 异步请求（失败情况演示）</h3>
+    <ul>
+      <li><a class="alert-btn" @click="handleWaitPromptAndTextDialog" rel="noopener">文本域检查(prompt)</a></li>
     </ul>
     <h3>自定义渲染</h3>
     <ul>
@@ -144,6 +148,29 @@ export default {
         wait: async (next, result) => {
           setTimeout(() => {
             next()
+          }, 1000)
+        }
+      })
+    },
+    async handleWaitPromptAndTextDialog () {
+      let result = await this.$dialog.prompt({
+        title: '异步关闭&域文本检查（失败情况）',
+        message: '失败情况演示',
+        fieldMessageTest: (fieldMessage) => {
+          return fieldMessage
+        },
+        fieldMessageError: (fieldMessage) => {
+          this.$dialog.alert({
+            message: '请填写正确信息'
+          })
+        },
+        wait: async (next, result) => {
+          setTimeout(async () => {
+            await this.$dialog.alert({
+              message: '请求失败'
+            })
+            next()
+            this.handleWaitPromptAndTextDialog()
           }, 1000)
         }
       })
