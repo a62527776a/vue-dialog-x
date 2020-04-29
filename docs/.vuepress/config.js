@@ -32,7 +32,8 @@ module.exports = {
       ['/prompt', 'Prompt'],
       ['/actions', 'Actions'],
       ['/dialog', 'Dialog'],
-      ['/vnode', '渲染VNode']
+      ['/vnode', '定制自定义复杂布局'],
+      ['/custom', '引入自定义css']
     ]
   }
 }

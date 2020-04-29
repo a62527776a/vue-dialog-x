@@ -2,12 +2,43 @@
 export default {
   data () {
     return {
-      dialogX: null
+      dialogX: null,
+      quanyi: [{
+        cover: 'http://ued.rr.tv/icon_qiandao_s.png',
+        title: '超值优惠',
+        desc: '续费61折',
+      }, {
+        cover: 'http://ued.rr.tv/icon_qiandao_s.png',
+        title: '省心省力',
+        desc: '自由续费可取消',
+      }, {
+        cover: 'http://ued.rr.tv/icon_qiandao_s.png',
+        title: '高速升级',
+        desc: '赠小蜜蜂勋章',
+      }]
     }
   },
   methods: {
     createDialog () {
       this.dialogX = new window.VueDialogX(window.Vue)
+    },
+    customDialog () {
+      if (!this.dialogX) this.createDialog()
+      let vnode = this.$createElement('div', { 
+        class: 'quanyi-dialog-message'
+      }, 
+        this.quanyi.map(item => this.$createElement('div', {
+          class: 'quanyi-dialog-message-item'
+        }, [
+          this.$createElement('img', { attrs: { src: item.cover, style: 'width: 33px;margin-bottom: 0.1rem' }, class: 'quanyi-dialog-message-item-cover' }),
+          this.$createElement('div', { class: 'quanyi-dialog-message-item-title' }, item.title),
+          this.$createElement('div', { class: 'quanyi-dialog-message-item-desc' }, item.desc)
+        ]))
+      )
+      this.dialogX.confirm({
+        title: '取消自动续费',
+        vnode
+      })
     },
     dialogXFn (type) {
       if (!this.dialogX) this.createDialog()
@@ -48,6 +79,22 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.quanyi-dialog-message {
+  display: flex;
+  justify-content: space-between
+}
+.quanyi-dialog-message-item-title {
+  color: #333333;
+  font-size: 15px
+}
+.quanyi-dialog-message-item-desc {
+  color: #919699;
+  font-size: 12px;
+}
+</style>
 # 介绍
 
 <a href="https://travis-ci.org/a62527776a/vue-dialog-x">
@@ -68,13 +115,22 @@ export default {
 
 仅对Dialog、Toast有着高频需求。所以在开发时，pass掉组件库。希望有一个好用，美观，且满足需求的弹窗库。**VueDialogX**便孵化出来了。
 
+
 <template>
 <button class="button" @click="dialogXFn('alert')">点我试试 Alert</button>
 <button class="button" @click="dialogXFn('confirm')">点我试试 Confirm</button>
 <button class="button" @click="dialogXFn('prompt')">点我试试 Prompt</button><br />
 <button class="button" @click="dialogXFn('actions')">点我试试 actions</button>
 <button class="button" @click="dialogXFn('dialog')">点我试试 Dialog</button>
+<button class="button" @click="customDialog">点我试试 自定义布局</button>
 </template>
+
+![自定义布局](https://i.loli.net/2020/04/29/vEIHMmgAk6T2KlP.gif)
+![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
+![8.gif](http://ued.rr.tv/0.3367761200861381%E5%BC%82%E6%AD%A5%E5%85%B3%E9%97%AD.gif)
+![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
+![8.gif](http://ued.rr.tv/0.25007438216585354actionswait.gif)
+![弹窗图示](https://upload-images.jianshu.io/upload_images/5738345-0b61e6d1d6a27605.gif?imageMogr2/auto-orient/strip)
 
 ## 它能做什么
 
@@ -103,5 +159,6 @@ export default {
 **支持渲染html**
 
 **支持script标签引入**
+
 
 
