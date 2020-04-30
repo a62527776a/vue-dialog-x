@@ -24,6 +24,7 @@ export default {
       this.dialogX = new window.VueDialogX(window.Vue)
     },
     selectActionColor () {
+      if (!this.dialogX) this.createDialog()
       let result = this.dialogX.actions({
         actions: [
           {
@@ -55,6 +56,7 @@ export default {
       })
     },
     async waitSelect () {
+      if (!this.dialogX) this.createDialog()
       let result = await this.dialogX.actions({
         actions: this.list,
         wait: (next) => {
