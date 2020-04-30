@@ -1,5 +1,6 @@
 export interface Action {
-  okText: string
+  okText: string,
+  okTextColor: string
 }
 
 export interface GlobalOptions {
@@ -9,6 +10,8 @@ export interface GlobalOptions {
   okText: string,
   cancelText: string
   html?: string
+  okTextColor: string,
+  cancelTextColor: string,
   actions?: null | Array<Action>
   vnode?: any
 }
@@ -25,6 +28,8 @@ export const DEFAULT_OPTIONS: GlobalOptions = {
   title: '提示',
   message: '',
   dialogType: DIALOG_TYPES.ALERT,
+  okTextColor: '#007aff',
+  cancelTextColor: '#007aff',
   okText: '确认',
   cancelText: '取消',
   html: '',

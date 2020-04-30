@@ -23,6 +23,28 @@ export default {
     createDialog () {
       this.dialogX = new window.VueDialogX(window.Vue)
     },
+    selectActionColor () {
+      let result = this.dialogX.actions({
+        actions: [
+          {
+            okText: '你妈妈喊你回家吃饭',
+            okTextColor: 'red'
+          },
+          {
+            okText: 'skr~skr~',
+            okTextColor: 'green'
+          },
+          {
+            okText: '我觉得还行',
+            okTextColor: 'blur'
+          },
+          {
+            okText: '我觉得ok',
+            okTextColor: 'blue'
+          }
+        ]
+      })
+    },
     async select () {
       if (!this.dialogX) this.createDialog()
       let result = await this.dialogX.actions({
@@ -72,6 +94,8 @@ wait    | function / null | null | 支持异步式调用 传入next参数 并在
 param   | type   | default
 |----   | ----   | -------
 okText   | string | ''
+okTextColor | string | ''
+按钮颜色默认继承全局配置
 
 ``` js
 const exampleActions = [
@@ -132,3 +156,9 @@ async () => {
   })
 }
 ```
+
+## 按钮颜色
+
+<tempalte>
+<button class="button" @click="selectActionColor">多选项带颜色</button>
+</tempalte>

@@ -5,9 +5,9 @@
       VueDialogX是一个iOS风格的弹窗对话框。
     </p>
     <p align="center">
-      <a href="https://travis-ci.org/a62527776a/vue-dialog-x">
+      <!-- <a href="https://travis-ci.org/a62527776a/vue-dialog-x">
         <img src="https://travis-ci.org/a62527776a/vue-dialog-x.svg?branch=master">
-      </a>
+      </a> -->
       <a href='https://coveralls.io/github/a62527776a/vue-dialog-x?branch=master'><img src='https://coveralls.io/repos/github/a62527776a/vue-dialog-x/badge.svg?branch=master' alt='Coverage Status' /></a>
       <a href="https://www.npmjs.com/package/vue-dialog-x"><img src="https://img.shields.io/npm/dm/vue-dialog-x.svg" /></a>
       <br>
@@ -31,6 +31,11 @@
       <li><a class="alert-btn" @click="handleWaitActionsDialog" rel="noopener">异步关闭(actions)</a></li>
       <li><a class="alert-btn" @click="handleWaitPromptDialog" rel="noopener">异步关闭(prompt)</a></li>
     </ul>
+    <h3>按钮颜色</h3>
+    <ul>
+      <li><a class="alert-btn" @click="btnTextcolor" rel="noopener">按钮颜色(confirm)</a></li>
+      <li><a class="alert-btn" @click="btnTextcolorActions" rel="noopener">按钮颜色(actions)</a></li>
+    </ul>
     <h3>文本域检查 && 异步请求</h3>
     <ul>
       <li><a class="alert-btn" @click="handleWaitPromptDialog" rel="noopener">文本域检查(prompt)</a></li>
@@ -46,12 +51,12 @@
         <textarea v-model="htmlString"></textarea>
       </li>
       <li><a class="alert-btn" @click="handleImgHTMLDialog" rel="noopener">自定义HTML（图片）</a></li><br /><br />
-      <li><a class="alert-btn" @click="renderVNode" rel="noopener">渲染VNode</a></li><br /><br />
+      <li><a class="alert-btn" @click="renderVNode" rel="noopener">渲染复杂布局（vnode）</a></li><br /><br />
     </ul>
     <h3>Essential Links</h3>
     <ul>
       <li><a class="alert-btn" href="https://github.com/a62527776a/vue-dialog-x" target="_blank" rel="noopener">Github</a></li>
-      <li><a class="alert-btn" href="http://dscsdoj.top/" target="_blank" rel="noopener">官网 && Apidoc</a></li>
+      <li><a class="alert-btn" href="http://vue-dialog-x-doc.dscsdoj.top/" target="_blank" rel="noopener">官网 && Apidoc</a></li>
     </ul>
     <!-- <h3>Ecosystem</h3>
     <ul>
@@ -69,7 +74,20 @@ export default {
   props: ['msg'],
   data () {
     return {
-      htmlString: `<a style="color: red">这是一个实例的html渲染 注意，html字段将会替换message字段</a>`
+      htmlString: `<a style="color: red">这是一个实例的html渲染 注意，html字段将会替换message字段</a>`,
+      quanyi: [{
+        cover: 'http://ued.rr.tv/icon_qiandao_s.png',
+        title: '超值优惠',
+        desc: '续费61折',
+      }, {
+        cover: 'http://ued.rr.tv/icon_qiandao_s.png',
+        title: '省心省力',
+        desc: '自由续费可取消',
+      }, {
+        cover: 'http://ued.rr.tv/icon_qiandao_s.png',
+        title: '高速升级',
+        desc: '赠小蜜蜂勋章',
+      }]
     }
   },
   methods: {
@@ -96,6 +114,37 @@ export default {
         })
       }
     },
+    btnTextcolor () {
+      this.$dialog.confirm({
+        message: 'okTextColor 以及 cancelTextColor用来修改按钮颜色',
+        okTextColor: 'red',
+        cancelTextColor: 'green'
+      })
+    },
+    btnTextcolorActions () {
+      this.$dialog.actions({
+        title: '按钮颜色配置',
+        message: 'actions 可单独配置颜色',
+        actions: [
+          {
+            okText: '操作1',
+            okTextColor: 'red'
+          },
+          {
+            okText: '操作2',
+            okTextColor: 'black'
+          },
+          {
+            okText: '操作3',
+            okTextColor: 'blur'
+          },
+          {
+            okText: '操作4',
+            okTextColor: 'green'
+          }
+        ]
+      })
+    },
     handleHTMLDialog () {
       this.$dialog.alert({
         html: this.htmlString
@@ -108,15 +157,17 @@ export default {
       })
     },
     renderVNode () {
-      let customEl = this.$createElement('h1', {
-        style: {
-          color: 'red',
-          fontSize: '22px'
-        },
-        on: {
-          click: this.handleDialogDialog
-        }
-      }, '我是VNode，点我触发事件')
+      let customEl = this.$createElement('div', { 
+        class: 'quanyi-dialog-message'
+      }, 
+      this.quanyi.map(item => this.$createElement('div', {
+        class: 'quanyi-dialog-message-item'
+      }, [
+        this.$createElement('img', { attrs: { src: item.cover, style: 'width: 33px;margin-bottom: 0.1rem' }, class: 'quanyi-dialog-message-item-cover' }),
+        this.$createElement('div', { class: 'quanyi-dialog-message-item-title' }, item.title),
+        this.$createElement('div', { class: 'quanyi-dialog-message-item-desc' }, item.desc)
+      ]))
+      )
       this.$dialog.alert({
         vnode: customEl
       })
@@ -278,4 +329,17 @@ li
 a 
   color: #42b983;
   text-decoration: underline;
+</style>
+
+<style scoped lang="sass">
+
+.quanyi-dialog-message
+  display: flex;
+  justify-content: space-between
+.quanyi-dialog-message-item-title
+  color: #333333;
+  font-size: 15px
+.quanyi-dialog-message-item-desc 
+  color: #919699;
+  font-size: 12px;
 </style>

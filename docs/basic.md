@@ -5,8 +5,27 @@ export default {
       google_ad_client: "ca-pub-6177820902567416",
       enable_page_level_ads: true
     });
-    let dialogX = new window.VueDialogX(window.Vue)
+    let dialogX = new window.VueDialogX(window.Vue, {
+      okTextColor: 'red',
+      cancelTextColor: 'green'
+    })
     window.dialogX = dialogX
+  },
+  methods: {
+    createDialog () {
+      this.dialogX = new window.VueDialogX(window.Vue, {
+        cancelTextColor: '#EEE'
+      })
+    },
+    async buy () {
+      if (!this.dialogX) this.createDialog()
+      await this.dialogX.confirm({message: '点击确认后购买', wait: next => setTimeout(() => next(), 1500)})
+      this.dialogX.alert({message: '购买成功'})
+    },
+    confirm () {
+      if (!this.dialogX) this.createDialog()
+      this.dialogX.confirm({title: '这是一个标题', message: '这是一个内容', okText: '去登陆'})
+    }
   }
 }
 </script>
@@ -15,6 +34,10 @@ export default {
 # 基础使用
 
 ## 全局配置
+
+<template>
+<button class="button" @click="confirm">confirm</button>
+</template>
 
 我们提供全局配置选项，以供修改基础配置
 
@@ -25,6 +48,8 @@ fields|type|default
 |message|string|''|
 |okText|string|'确认'|
 |cancelText|string|'取消'|
+|okTextColor|string|'确认按钮文字颜色'|
+|cancelTextColor|string|'取消按钮文字颜色'|
 
 ::: tip
 单次调用传入的配置优先级高于全局配置高于默认配置
