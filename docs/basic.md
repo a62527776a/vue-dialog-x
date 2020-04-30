@@ -13,9 +13,7 @@ export default {
   },
   methods: {
     createDialog () {
-      this.dialogX = new window.VueDialogX(window.Vue, {
-        cancelTextColor: '#EEE'
-      })
+      this.dialogX = new window.VueDialogX(window.Vue)
     },
     async buy () {
       if (!this.dialogX) this.createDialog()
