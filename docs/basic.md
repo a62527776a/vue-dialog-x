@@ -48,6 +48,7 @@ fields|type|default
 |cancelText|string|'取消'|
 |okTextColor|string|'确认按钮文字颜色'|
 |cancelTextColor|string|'取消按钮文字颜色'|
+|reverse | boolean | 按钮顺序对调 |
 
 ::: tip
 单次调用传入的配置优先级高于全局配置高于默认配置
