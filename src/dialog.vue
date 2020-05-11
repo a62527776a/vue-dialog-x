@@ -20,7 +20,7 @@
           v-if="showField"
           v-model="fieldMessage")
       template(v-if="!showDialog")
-        .dialog-x-action-bar.dialog-x-btn-radius(v-if="!showActions")
+        .dialog-x-action-bar.dialog-x-btn-radius(v-if="!showActions" :class="{ 'dialog-x-action-bar-reverse' : reverse }")
           .dialog-x-btn(
             @click="confirm"
             @touchstart="") 
@@ -231,6 +231,8 @@ export default class VueDialogXComponent extends Vue {
   content: " ";
   position: absolute;
   transform: scaleY(0.5);
+.dialog-x-action-bar-reverse
+  flex-direction: row-reverse;
 .dialog-x-btn
   color: $btnColor
   @include flex

@@ -31,10 +31,11 @@
       <li><a class="alert-btn" @click="handleWaitActionsDialog" rel="noopener">异步关闭(actions)</a></li>
       <li><a class="alert-btn" @click="handleWaitPromptDialog" rel="noopener">异步关闭(prompt)</a></li>
     </ul>
-    <h3>按钮颜色</h3>
+    <h3>按钮颜色 && 按钮反转</h3>
     <ul>
       <li><a class="alert-btn" @click="btnTextcolor" rel="noopener">按钮颜色(confirm)</a></li>
       <li><a class="alert-btn" @click="btnTextcolorActions" rel="noopener">按钮颜色(actions)</a></li>
+      <li><a class="alert-btn" @click="reverse" rel="noopener">按钮位置翻转</a></li>
     </ul>
     <h3>文本域检查 && 异步请求</h3>
     <ul>
@@ -101,6 +102,21 @@ export default {
           message: `您输入了：${a}`
         })
       }
+    },
+    reverse () {
+      let a = this.$dialog.confirm({
+        title: '提示',
+        message: `reverse属性将会反转按钮顺序`,
+        reverse: true
+      }).then(() => {
+        this.$dialog.alert({
+          message: '点击了确认'
+        })
+      }).catch(e => {
+        this.$dialog.alert({
+          message: '点击了取消'
+        })
+      })
     },
     async handleDialog (type) {
       let a = await this.$dialog[type]({

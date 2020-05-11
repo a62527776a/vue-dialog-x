@@ -7,6 +7,7 @@ export interface GlobalOptions {
   title?: string
   message?: string
   dialogType?: DIALOG_TYPES
+  reverse: boolean
   okText: string,
   cancelText: string
   html?: string
@@ -29,6 +30,7 @@ export const DEFAULT_OPTIONS: GlobalOptions = {
   message: '',
   dialogType: DIALOG_TYPES.ALERT,
   okTextColor: '#007aff',
+  reverse: false,
   cancelTextColor: '#007aff',
   okText: '确认',
   cancelText: '取消',
