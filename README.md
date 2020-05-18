@@ -13,6 +13,15 @@
   <p style="text-align: center">支持Promise的iOS样式风格的弹窗提示</p>
 </p>
 
+## 演示
+自定义布局
+![自定义布局](https://i.loli.net/2020/04/29/vEIHMmgAk6T2KlP.gif)
+![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
+![8.gif](http://ued.rr.tv/0.3367761200861381%E5%BC%82%E6%AD%A5%E5%85%B3%E9%97%AD.gif)
+![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
+![8.gif](http://ued.rr.tv/0.25007438216585354actionswait.gif)
+![弹窗图示](https://upload-images.jianshu.io/upload_images/5738345-0b61e6d1d6a27605.gif?imageMogr2/auto-orient/strip)
+
 
 ## 它能做什么
 
@@ -49,11 +58,3 @@
 
 - 支持script标签引入
 
-## 演示
-自定义布局
-![自定义布局](https://i.loli.net/2020/04/29/vEIHMmgAk6T2KlP.gif)
-![8.gif](https://img.rr.tv/fe/2019715/alert.gif)
-![8.gif](http://ued.rr.tv/0.3367761200861381%E5%BC%82%E6%AD%A5%E5%85%B3%E9%97%AD.gif)
-![8.gif](https://img.rr.tv/fe/2019715/prompt.gif)
-![8.gif](http://ued.rr.tv/0.25007438216585354actionswait.gif)
-![弹窗图示](https://upload-images.jianshu.io/upload_images/5738345-0b61e6d1d6a27605.gif?imageMogr2/auto-orient/strip)
