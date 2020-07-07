@@ -39,7 +39,7 @@
 
 [demo](https://htmlpreview.github.io/?https://github.com/a62527776a/vue-dialog-x/blob/master/docs/demo/index.html)
 
-[Homepage and documentation](http://vue-dialog-x-doc.dscsdoj.top)
+[Homepage and documentation](https://vue-dialog-x.github.io/)
 
 
 ## Features
