@@ -15,13 +15,13 @@ export class VueDialogX {
   Vue: any
   $root: VueDialogXComponentObject
   globalOptions: GlobalOptions
-  constructor (Vue: any, globalOptions?: GlobalOptions) {
+  constructor(Vue: any, globalOptions?: GlobalOptions) {
     this.Vue = Vue
     this.$root = {}
     if (globalOptions) this.globalOptions = globalOptions
   }
 
-  open (opt: OpenOpt, dialogType: DIALOG_TYPES): Promise<void> {
+  open(opt: OpenOpt, dialogType: DIALOG_TYPES): Promise<void> {
     let id: number = this.mountIfNotMounted(opt.id)
     let _DEFAULT_OPTIONS: GlobalOptions = JSON.parse(JSON.stringify(DEFAULT_OPTIONS))
     let _opt: GlobalOptions = Object.assign(_DEFAULT_OPTIONS, this.globalOptions)
@@ -34,7 +34,7 @@ export class VueDialogX {
     })
   }
 
-  mountIfNotMounted (_id?: number): number {
+  mountIfNotMounted(_id?: number): number {
     let vm: VueDialogXComponent = createVm(this.Vue)
     let id: number = 0
     _id ? id = _id : id = new Date().valueOf()
@@ -44,31 +44,31 @@ export class VueDialogX {
     return id
   }
 
-  remove (id: number): void {
+  remove(id: number): void {
     this.$root[id].$off()
     this.$root[id].$destroy()
     this.$root[id].$el.remove()
     delete this.$root[id]
   }
 
-  
-  confirm (opt: OpenOpt = DEFAULT_OPTIONS) {
+
+  confirm(opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.CONFIRM)
   }
 
-  alert (opt: OpenOpt = DEFAULT_OPTIONS) {
+  alert(opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.ALERT)
   }
 
-  prompt (opt: OpenOpt = DEFAULT_OPTIONS) {
+  prompt(opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.PROMPT)
   }
 
-  actions (opt: OpenOpt = DEFAULT_OPTIONS) {
+  actions(opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.ACTIONS)
   }
 
-  dialog (opt: OpenOpt = DEFAULT_OPTIONS) {
+  dialog(opt: OpenOpt = DEFAULT_OPTIONS) {
     return this.open(opt, DIALOG_TYPES.DIALOG)
   }
 

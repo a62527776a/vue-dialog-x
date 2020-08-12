@@ -8,7 +8,7 @@
     "build:window": "webpack --config build/webpack.build.window.config.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.config.js",
     "build:demo": "webpack --config build/webpack.demo.build.config.js",
-    "release": "npm run test && npm run build && npm run docs:build && npm run build:window && npm run build:demo && git add . && git commit . -m '发布新版本' && git push && npm publish",
+    "release": "npm run test && npm run build && npm run docs:build && npm run build:window && npm run build:demo && git add . && git commit . -m 'Release commit' && git push && npm publish",
     "precommit": "npm run test",
     "docs:dev": "vuepress dev docs/",
     "docs:build": "vuepress build docs/"
