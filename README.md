@@ -37,7 +37,7 @@
 
 ## Links
 
-[Homepage and documentation](https://vue-dialog-x.github.io/)
+[Homepage and documentation](https://vue-dialog-x.github.io/)  
 [DEMO](https://a62527776a.github.io/vue-dialog-x/demo/index.html)
 
 ## Features
