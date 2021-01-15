@@ -2,6 +2,9 @@ module.exports = {
   base: './',
   title: 'Hello VueDialogX',
   description: '好用的iOS风格弹窗组件',
+  themeConfig: {
+    search: false,
+  },
   head: [
     ['script', {
       src: 'https://unpkg.com/vue@2.6.10/dist/vue.js'
