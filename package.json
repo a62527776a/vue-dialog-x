@@ -60,7 +60,7 @@
     "karma-webpack": "^2.0.13",
     "node-sass": "^4.14.1",
     "phantomjs-prebuilt": "^2.1.16",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.20.2",
