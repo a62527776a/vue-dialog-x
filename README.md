@@ -10,7 +10,7 @@
   </a>
   <img alt="npm type definitions" src="https://img.shields.io/npm/types/vue-dialog-x">
   <img alt="npm" src="https://img.shields.io/npm/v/vue-dialog-x">
-  <p style="text-align: center">支持Promise的iOS样式风格的弹窗提示</p>
+  <p style="text-align: center">支持Promise的企业级iOS样式风格的弹窗提示</p>
 </p>
 
 ## 演示
@@ -56,3 +56,4 @@
 
 - 支持script标签引入
 
+used by ![81636079374_ pic](https://user-images.githubusercontent.com/13726832/140448324-1271105a-99a5-4491-97b8-2319a55fc0d2.jpg)
